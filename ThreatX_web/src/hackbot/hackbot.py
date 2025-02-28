@@ -104,7 +104,7 @@ def Print_AI_out(prompt, ai_option) -> Panel:
         ),
         box=box.ROUNDED,
         padding=(1, 2),
-        title="[b red]The HackBot AI output",
+        title="[b red]The ThreatX AI output",
         border_style="blue",
     )
     save_data = {
@@ -201,7 +201,7 @@ def static_analysis(language_used, file_path, ai_option) -> Panel:
         ),
         box=box.ROUNDED,
         padding=(1, 2),
-        title="[b red]The HackBot AI output",
+        title="[b red]The ThreatX AI output",
         border_style="blue",
     )
     save_data = {
