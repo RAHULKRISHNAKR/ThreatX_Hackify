@@ -61,14 +61,20 @@ def llama_api(prompt):
 try:
     llm = LlamaCpp(
         model_path=model_path,
-        input={"temperature": 0.75, "max_length": 3500, "top_p": 1},
+        input={
+            "temperature": 0.6,      # Lowered temperature for faster responses
+            "max_length": 1000,      # Reduced max length
+            "top_p": 0.9            # Adjusted for balance of speed/quality
+        },
         callback_manager=callback_manager,
-        max_tokens=3500,
-        n_batch=3500,
-        n_gpu_layers=60,
+        max_tokens=1000,            # Reduced max tokens
+        n_batch=32,                 # Smaller batch size for faster processing
+        n_gpu_layers=60,           
         verbose=False,
-        n_ctx=3500,
-        streaming=False,
+        n_ctx=1000,                # Reduced context window
+        streaming=True,            # Enable streaming for faster first response
+        f16_kv=True,              # Use float16 for key/value cache
+        use_mlock=True,           # Keep model in memory
     )
 except NameError:
     pass
@@ -90,29 +96,23 @@ def clearscr() -> None:
         pass
 
 
-def Print_AI_out(prompt, ai_option) -> Panel:
-    global chat_history
-    if ai_option == "RUNPOD":
-        out = llama_api(prompt)
-    else:
-        out = llm(prompt)
-    ai_out = Markdown(out)
-    message_panel = Panel(
-        Align.center(
-            Group("\n", Align.center(ai_out)),
-            vertical="middle",
-        ),
-        box=box.ROUNDED,
-        padding=(1, 2),
-        title="[b red]The ThreatX AI output",
-        border_style="blue",
-    )
-    save_data = {
-        "Query": str(prompt),
-        "AI Answer": str(out)
-    }
-    chat_history.append(save_data)
-    return message_panel
+def Print_AI_out(prompt, ai_option):
+    try:
+        # Simplified prompt template
+        formatted_prompt = f"Be concise. Answer: {prompt}"
+        
+        # Get AI response with timeout
+        if ai_option == "RUNPOD":
+            response = llama_api(formatted_prompt)
+        else:
+            response = llm(formatted_prompt)
+        
+        # Simplified return
+        return str(response).strip()
+        
+    except Exception as e:
+        print(f"Error in Print_AI_out: {str(e)}")
+        return "I apologize, but I'm having trouble processing that request."
 
 
 def save_chat(chat_history: list[Any, Any]) -> None:

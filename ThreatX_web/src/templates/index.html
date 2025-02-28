@@ -3,18 +3,357 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CyberSecurity Chatbot</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>ThreatX Chatbot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        body {
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .left-panel {
+            flex: 1;
+            background-color: #041019;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .right-panel {
+            flex: 1;
+            background: linear-gradient(130deg, #041019 0%, #0d1f2d 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            position: relative;
+        }
+
+        .navbar {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 30px 40px;
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-item {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+        }
+
+        .nav-item:hover {
+            color: #83b3d1;
+        }
+
+        .sign-up-btn {
+            background-color: #2a7ca3;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .sign-up-btn:hover {
+            background-color: #3d99c2;
+        }
+
+        .logo-container {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 70px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            font-style: italic;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            transform: skewX(-10deg);
+        }
+
+        .logo span {
+            color: #83b3d1;
+        }
+
+        .chatbot-text {
+            font-size: 85px;
+            color: #83b3d1;
+            font-weight: 700;
+            letter-spacing: 2px;
+            font-style: italic;
+            margin-top: -15px;
+            text-shadow: 0 0 15px rgba(131, 179, 209, 0.3);
+            transform: skewX(-10deg);
+        }
+
+        .start-chat-btn {
+            background-color: #83b3d1;
+            color: #0a1622;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 25px;
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            cursor: pointer;
+            margin-top: 80px;
+            transition: background-color 0.3s, transform 0.3s;
+            text-transform: uppercase;
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        .start-chat-btn:hover {
+            background-color: #a5c9dd;
+            transform: scale(1.05);
+        }
+
+        /* Neon lights */
+        .neon-light {
+            position: absolute;
+            width: 4px;
+            background-color: #5ce1e6;
+            box-shadow: 0 0 10px #5ce1e6, 0 0 20px #5ce1e6;
+            opacity: 0.8;
+        }
+
+        .neon-light-1 {
+            height: 180px;
+            top: 50px;
+            left: 80px;
+        }
+
+        .neon-light-2 {
+            height: 140px;
+            top: 70px;
+            left: 120px;
+        }
+
+        /* Hacker image */
+        .hacker-img {
+            width: 80%;
+            height: auto;
+            background-size: cover;
+            background-position: center bottom;
+            background-repeat: no-repeat;
+        }
+
+        /* About page styles */
+        .about-page {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(130deg, #041019 0%, #0d1f2d 100%);
+            z-index: 1000;
+            padding: 50px;
+            color: white;
+            overflow-y: auto;
+        }
+
+        .about-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .about-logo {
+            font-size: 40px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 2px;
+            font-style: italic;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            transform: skewX(-10deg);
+        }
+
+        .about-logo span {
+            color: #83b3d1;
+        }
+
+        .close-btn {
+            background-color: #83b3d1;
+            color: #0a1622;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .close-btn:hover {
+            background-color: #a5c9dd;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about-content h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #83b3d1;
+        }
+
+        .about-content p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .about-content h2 {
+            font-size: 28px;
+            margin: 30px 0 15px;
+            color: #83b3d1;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .feature-item {
+            background: rgba(131, 179, 209, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 3px solid #83b3d1;
+        }
+
+        .feature-item h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #83b3d1;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to CyberSecurity Chatbot</h1>
-        <div id="chatbox">
-            <div id="messages"></div>
-            <input type="text" id="user-input" placeholder="Type your message here...">
-            <button id="send-button">Send</button>
+        <div class="left-panel">
+            <div class="neon-light neon-light-1"></div>
+            <div class="neon-light neon-light-2"></div>
+            <img class="hacker-img" id="hackerImage" src="image1.png" alt="Hacker Image">
+        </div>
+        <div class="right-panel">
+            <div class="navbar">
+                <a href="#" class="nav-item" id="aboutUsLink">About Us</a>
+                <a href="#" class="nav-item">Login</a>
+                <button class="sign-up-btn">Sign Up</button>
+            </div>
+            <div class="logo-container">
+                <div class="logo">THREAT<span>X</span></div>
+                <div class="chatbot-text">CHATBOT</div>
+            </div>
+            <button id="startChatBtn" class="start-chat-btn">START CHAT</button>
         </div>
     </div>
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    <!-- About Page -->
+    <div class="about-page" id="aboutPage">
+        <div class="about-header">
+            <div class="about-logo">THREAT<span>X</span></div>
+            <button class="close-btn" id="closeAboutBtn">Back to Home</button>
+        </div>
+        <div class="about-content">
+            <h1>About ThreatX Chatbot</h1>
+            <p>ThreatX Chatbot is an advanced AI-powered security assistant designed to help organizations identify, analyze, and respond to cybersecurity threats in real-time. Our innovative platform combines cutting-edge natural language processing with comprehensive threat intelligence to provide immediate guidance and support.</p>
+            
+            <h2>Our Mission</h2>
+            <p>We believe that robust cybersecurity shouldn't be complicated. Our mission is to democratize access to enterprise-grade security expertise through an intuitive conversational interface that anyone in your organization can use, regardless of their technical background.</p>
+            
+            <h2>Key Features</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h3>Threat Detection</h3>
+                    <p>Identify potential security incidents and vulnerabilities through natural language conversation.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Incident Response</h3>
+                    <p>Get step-by-step guidance for addressing and mitigating active security threats.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Security Training</h3>
+                    <p>Learn about cybersecurity best practices and improve your organization's security posture.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Compliance Assistance</h3>
+                    <p>Navigate complex regulatory requirements with context-aware compliance guidance.</p>
+                </div>
+            </div>
+            
+            <h2>How It Works</h2>
+            <p>Simply start a conversation with our chatbot by clicking the "START CHAT" button. The AI will analyze your questions, provide relevant security information, and offer actionable recommendations tailored to your specific situation. Whether you're responding to a potential breach or simply strengthening your security practices, ThreatX is your 24/7 cybersecurity assistant.</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add flicker effect to neon lights
+            const neonLights = document.querySelectorAll('.neon-light');
+            neonLights.forEach(light => {
+                setInterval(() => {
+                    const opacity = 0.7 + Math.random() * 0.3;
+                    const blurRadius = 5 + Math.random() * 10;
+                    light.style.opacity = opacity;
+                    light.style.boxShadow = `0 0 ${blurRadius}px #5ce1e6, 0 0 ${blurRadius * 2}px #5ce1e6`;
+                }, 100 + Math.random() * 2000);
+            });
+            
+            // Update start chat button functionality
+            document.getElementById('startChatBtn').addEventListener('click', function() {
+                window.location.href = '/chatbot';  // Changed from cybercrime_chatbot.html to /chatbot
+            });
+            
+            // About Us page functionality
+            const aboutUsLink = document.getElementById('aboutUsLink');
+            const aboutPage = document.getElementById('aboutPage');
+            const closeAboutBtn = document.getElementById('closeAboutBtn');
+            
+            // Show About page when About Us is clicked
+            aboutUsLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                aboutPage.style.display = 'block';
+            });
+            
+            // Hide About page when Close button is clicked
+            closeAboutBtn.addEventListener('click', function() {
+                aboutPage.style.display = 'none';
+            });
+        });
+    </script>
 </body>
 </html>
