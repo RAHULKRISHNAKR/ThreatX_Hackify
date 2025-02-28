@@ -1,0 +1,6 @@
+Flask
+requests
+python-dotenv
+rich
+langchain
+huggingface-hub
