@@ -47,6 +47,6 @@ def chat():
         return jsonify({
             'response': 'The service is temporarily unavailable. Please try again later.'
         }), 500
-
+    
 if __name__ == "__main__":
     app.run(debug=True)

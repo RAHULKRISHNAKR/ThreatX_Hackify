@@ -18,23 +18,8 @@
         }
 
         .container {
-            display: flex;
             height: 100vh;
             width: 100vw;
-        }
-
-        .left-panel {
-            flex: 1;
-            background-color: #041019;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .right-panel {
-            flex: 1;
             background: linear-gradient(130deg, #041019 0%, #0d1f2d 100%);
             display: flex;
             flex-direction: column;
@@ -86,10 +71,11 @@
         .logo-container {
             margin-bottom: 40px;
             text-align: center;
+            z-index: 10;
         }
 
         .logo {
-            font-size: 70px;
+            font-size: 90px;
             font-weight: 700;
             color: #ffffff;
             letter-spacing: 2px;
@@ -104,12 +90,12 @@
         }
 
         .chatbot-text {
-            font-size: 85px;
+            font-size: 100px;
             color: #83b3d1;
             font-weight: 700;
             letter-spacing: 2px;
             font-style: italic;
-            margin-top: -15px;
+            margin-top: -20px;
             text-shadow: 0 0 15px rgba(131, 179, 209, 0.3);
             transform: skewX(-10deg);
         }
@@ -118,9 +104,9 @@
             background-color: #83b3d1;
             color: #0a1622;
             border: none;
-            padding: 15px 40px;
-            border-radius: 25px;
-            font-size: 22px;
+            padding: 18px 50px;
+            border-radius: 30px;
+            font-size: 24px;
             font-weight: 700;
             letter-spacing: 1px;
             cursor: pointer;
@@ -128,41 +114,80 @@
             transition: background-color 0.3s, transform 0.3s;
             text-transform: uppercase;
             font-family: 'Rajdhani', sans-serif;
+            z-index: 10;
+            box-shadow: 0 0 20px rgba(131, 179, 209, 0.4);
         }
 
         .start-chat-btn:hover {
             background-color: #a5c9dd;
             transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(131, 179, 209, 0.6);
         }
 
-        /* Neon lights */
+        /* Neon lights repositioned */
         .neon-light {
             position: absolute;
-            width: 4px;
             background-color: #5ce1e6;
             box-shadow: 0 0 10px #5ce1e6, 0 0 20px #5ce1e6;
             opacity: 0.8;
         }
 
         .neon-light-1 {
-            height: 180px;
-            top: 50px;
-            left: 80px;
+            width: 4px;
+            height: 300px;
+            top: 15%;
+            left: 15%;
+            transform: rotate(-15deg);
         }
 
         .neon-light-2 {
-            height: 140px;
-            top: 70px;
-            left: 120px;
+            width: 4px;
+            height: 250px;
+            top: 20%;
+            left: 25%;
+            transform: rotate(-5deg);
         }
 
-        /* Hacker image */
-        .hacker-img {
-            width: 80%;
-            height: auto;
-            background-size: cover;
-            background-position: center bottom;
-            background-repeat: no-repeat;
+        .neon-light-3 {
+            width: 4px;
+            height: 280px;
+            top: 18%;
+            right: 20%;
+            transform: rotate(15deg);
+        }
+
+        .neon-light-4 {
+            width: 4px;
+            height: 220px;
+            top: 25%;
+            right: 30%;
+            transform: rotate(5deg);
+        }
+
+        /* Background elements */
+        .bg-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle, rgba(131, 179, 209, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        .glow-effect {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(131, 179, 209, 0.2) 0%, rgba(13, 31, 45, 0) 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
         }
 
         /* About page styles */
@@ -252,6 +277,12 @@
             padding: 20px;
             border-radius: 10px;
             border-left: 3px solid #83b3d1;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
         .feature-item h3 {
@@ -259,27 +290,48 @@
             margin-bottom: 10px;
             color: #83b3d1;
         }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 20px;
+            }
+            
+            .logo {
+                font-size: 60px;
+            }
+            
+            .chatbot-text {
+                font-size: 70px;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="left-panel">
-            <div class="neon-light neon-light-1"></div>
-            <div class="neon-light neon-light-2"></div>
-            <img class="hacker-img" id="hackerImage" src="#" alt="Hacker Image">
+        <div class="bg-grid"></div>
+        <div class="glow-effect"></div>
+        
+        <div class="neon-light neon-light-1"></div>
+        <div class="neon-light neon-light-2"></div>
+        <div class="neon-light neon-light-3"></div>
+        <div class="neon-light neon-light-4"></div>
+        
+        <div class="navbar">
+            <a href="#" class="nav-item" id="aboutUsLink">About Us</a>
+            <a href="#" class="nav-item">Login</a>
+            <button class="sign-up-btn">Sign Up</button>
         </div>
-        <div class="right-panel">
-            <div class="navbar">
-                <a href="#" class="nav-item" id="aboutUsLink">About Us</a>
-                <a href="#" class="nav-item">Login</a>
-                <button class="sign-up-btn">Sign Up</button>
-            </div>
-            <div class="logo-container">
-                <div class="logo">THREAT<span>X</span></div>
-                <div class="chatbot-text">CHATBOT</div>
-            </div>
-            <button id="startChatBtn" class="start-chat-btn">START CHAT</button>
+        
+        <div class="logo-container">
+            <div class="logo">THREAT<span>X</span></div>
+            <div class="chatbot-text">CHATBOT</div>
         </div>
+        
+        <button id="startChatBtn" class="start-chat-btn">START CHAT</button>
     </div>
 
     <!-- About Page -->
@@ -335,7 +387,7 @@
             
             // Update start chat button functionality
             document.getElementById('startChatBtn').addEventListener('click', function() {
-                window.location.href = '/chatbot';  // Changed from cybercrime_chatbot.html to /chatbot
+                window.location.href = '/chatbot';
             });
             
             // About Us page functionality
