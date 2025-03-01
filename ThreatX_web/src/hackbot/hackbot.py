@@ -2,6 +2,8 @@ import os
 import platform
 import json
 import requests
+import time
+from datetime import datetime, timedelta
 from subprocess import run
 from rich.prompt import Prompt
 from rich import print
@@ -26,70 +28,118 @@ AI_OPTION = os.getenv("AI_OPTION")
 
 console = Console()
 
-# Configure Gemini
+# Add rate limiting variables
+MAX_REQUESTS_PER_MINUTE = 60
+request_timestamps = []
+model = None
+last_initialization_attempt = None
+INITIALIZATION_COOLDOWN = 60  # seconds
+
+def check_rate_limit():
+    """Check if we're within rate limits"""
+    global request_timestamps
+    current_time = datetime.now()
+    # Remove timestamps older than 1 minute
+    request_timestamps = [ts for ts in request_timestamps 
+                        if current_time - ts < timedelta(minutes=1)]
+    
+    if len(request_timestamps) >= MAX_REQUESTS_PER_MINUTE:
+        return False
+    
+    request_timestamps.append(current_time)
+    return True
+
+def initialize_gemini():
+    global model, last_initialization_attempt
+    
+    # Check if we're trying to initialize too frequently
+    if last_initialization_attempt and \
+       time.time() - last_initialization_attempt < INITIALIZATION_COOLDOWN:
+        print("Waiting for initialization cooldown...")
+        return False
+        
+    last_initialization_attempt = time.time()
+    
+    try:
+        api_key = os.getenv("GEMINI_API_KEY")
+        if not api_key:
+            raise ValueError("GEMINI_API_KEY not found in environment variables")
+            
+        print(f"Attempting to initialize Gemini with key: {api_key[:10]}...")
+        genai.configure(api_key=api_key)
+        
+        # Initialize model with just the name
+        model = genai.GenerativeModel('models/gemini-1.5-pro')
+        
+        # Simple test without generation config
+        test_response = model.generate_content("test")
+        if not hasattr(test_response, 'text'):
+            raise ValueError("Model test failed - invalid response format")
+            
+        print("Gemini model initialized successfully!")
+        return True
+        
+    except Exception as e:
+        print(f"Failed to initialize Gemini: {str(e)}")
+        model = None
+        return False
+
+# Initialize Gemini if it's selected
 if AI_OPTION == "GEMINI":
-    genai.configure(api_key=GEMINI_API_KEY)
-    model = genai.GenerativeModel('gemini-pro')
+    if not initialize_gemini():
+        print("Warning: Gemini initialization failed!")
 
 # Configure OpenAI
 if AI_OPTION == "OPENAI":
     openai.api_key = OPENAI_API_KEY
 
-# Comment out Llama configuration code but keep for reference
-"""
-if AI_OPTION == "LLAMALOCAL":
-    model_name_or_path = "localmodels/Llama-2-7B-Chat-ggml"
-    model_basename = "llama-2-7b-chat.ggmlv3.q4_0.bin"
-    model_path = hf_hub_download(repo_id=model_name_or_path, filename=model_basename)
-    callback_manager = CallbackManager([StreamingStdOutCallbackHandler()])
-    llm = LlamaCpp(
-        model_path=model_path,
-        input={
-            "temperature": 0.6,
-            "max_length": 1000,
-            "top_p": 0.9
-        },
-        callback_manager=callback_manager,
-        max_tokens=1000,
-        n_batch=32,
-        n_gpu_layers=60,
-        verbose=False,
-        n_ctx=1000,
-        streaming=True,
-        f16_kv=True,
-        use_mlock=True,
-    )
-"""
+# Llama configuration moved to a separate function to avoid indentation issues
+def setup_llama():
+    if AI_OPTION == "LLAMALOCAL":
+        model_name_or_path = "localmodels/Llama-2-7B-Chat-ggml"
+        model_basename = "llama-2-7b-chat.ggmlv3.q4_0.bin"
+        model_path = hf_hub_download(repo_id=model_name_or_path, filename=model_basename)
+        callback_manager = CallbackManager([StreamingStdOutCallbackHandler()])
+        return LlamaCpp(
+            model_path=model_path,
+            input={
+                "temperature": 0.6,
+                "max_length": 1000,
+                "top_p": 0.9
+            },
+            callback_manager=callback_manager,
+            max_tokens=1000,
+            n_batch=32,
+            n_gpu_layers=60,
+            verbose=False,
+            n_ctx=1000,
+            streaming=True,
+            f16_kv=True,
+            use_mlock=True,
+        )
+    return None
 
 def gemini_api(prompt):
+    global model
+    
+    if not check_rate_limit():
+        return "Rate limit exceeded. Please wait a minute before trying again."
+    
     try:
-        # Simplified direct call to Gemini without safety check
-        response = model.generate_content(prompt, safety_settings=[
-            {
-                "category": "HARM_CATEGORY_HARASSMENT",
-                "threshold": "BLOCK_NONE"
-            },
-            {
-                "category": "HARM_CATEGORY_HATE_SPEECH",
-                "threshold": "BLOCK_NONE"
-            },
-            {
-                "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
-                "threshold": "BLOCK_NONE"
-            },
-            {
-                "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
-                "threshold": "BLOCK_NONE"
-            }
-        ])
-        
-        if response.text:
-            return response.text
-        return "Could not generate a response. Please try again."
-        
+        if model is None:
+            if not initialize_gemini():
+                return "Error: Could not initialize Gemini model. Please try again later."
+
+        response = model.generate_content(prompt)
+        return response.text if hasattr(response, 'text') else str(response)
+
     except Exception as e:
-        print(f"Detailed Gemini API error: {str(e)}")  # This will help debug
-        return "I encountered an error. Please try again."
+        error_msg = str(e)
+        print(f"Gemini API error: {error_msg}")
+        
+        if "429" in error_msg or "quota" in error_msg.lower():
+            return "Service is currently busy. Please try again in a few minutes."
+        return f"Error: {error_msg}"
 
 def openai_api(prompt):
     response = openai.ChatCompletion.create(
