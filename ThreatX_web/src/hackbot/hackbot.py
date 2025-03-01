@@ -3,10 +3,6 @@ import platform
 import json
 import requests
 from subprocess import run
-from langchain.llms import LlamaCpp
-from langchain.callbacks.manager import CallbackManager
-from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
-from huggingface_hub import hf_hub_download
 from rich.prompt import Prompt
 from rich import print
 from rich.console import Console
@@ -17,23 +13,92 @@ from rich import box
 from rich.markdown import Markdown
 from typing import Any
 from dotenv import load_dotenv
+import google.generativeai as genai
+import openai
 
+# Load environment variables
 load_dotenv()
 RUNPOD_ENDPOINT_ID = os.getenv("RUNPOD_ENDPOINT_ID")
 RUNPOD_API_KEY = os.getenv("RUNPOD_API_KEY")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 AI_OPTION = os.getenv("AI_OPTION")
+
 console = Console()
-url = f"https://api.runpod.ai/v2/{RUNPOD_ENDPOINT_ID}/runsync"
 
-model_name_or_path = "localmodels/Llama-2-7B-Chat-ggml"
-model_basename = "llama-2-7b-chat.ggmlv3.q4_0.bin"
+# Configure Gemini
+if AI_OPTION == "GEMINI":
+    genai.configure(api_key=GEMINI_API_KEY)
+    model = genai.GenerativeModel('gemini-pro')
 
+# Configure OpenAI
+if AI_OPTION == "OPENAI":
+    openai.api_key = OPENAI_API_KEY
+
+# Comment out Llama configuration code but keep for reference
+"""
 if AI_OPTION == "LLAMALOCAL":
-    model_path = hf_hub_download(
-        repo_id=model_name_or_path, filename=model_basename)
-else:
-    pass
-callback_manager = CallbackManager([StreamingStdOutCallbackHandler()])
+    model_name_or_path = "localmodels/Llama-2-7B-Chat-ggml"
+    model_basename = "llama-2-7b-chat.ggmlv3.q4_0.bin"
+    model_path = hf_hub_download(repo_id=model_name_or_path, filename=model_basename)
+    callback_manager = CallbackManager([StreamingStdOutCallbackHandler()])
+    llm = LlamaCpp(
+        model_path=model_path,
+        input={
+            "temperature": 0.6,
+            "max_length": 1000,
+            "top_p": 0.9
+        },
+        callback_manager=callback_manager,
+        max_tokens=1000,
+        n_batch=32,
+        n_gpu_layers=60,
+        verbose=False,
+        n_ctx=1000,
+        streaming=True,
+        f16_kv=True,
+        use_mlock=True,
+    )
+"""
+
+def gemini_api(prompt):
+    try:
+        # Simplified direct call to Gemini without safety check
+        response = model.generate_content(prompt, safety_settings=[
+            {
+                "category": "HARM_CATEGORY_HARASSMENT",
+                "threshold": "BLOCK_NONE"
+            },
+            {
+                "category": "HARM_CATEGORY_HATE_SPEECH",
+                "threshold": "BLOCK_NONE"
+            },
+            {
+                "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+                "threshold": "BLOCK_NONE"
+            },
+            {
+                "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+                "threshold": "BLOCK_NONE"
+            }
+        ])
+        
+        if response.text:
+            return response.text
+        return "Could not generate a response. Please try again."
+        
+    except Exception as e:
+        print(f"Detailed Gemini API error: {str(e)}")  # This will help debug
+        return "I encountered an error. Please try again."
+
+def openai_api(prompt):
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0.7,
+        max_tokens=1000
+    )
+    return response.choices[0].message.content
 
 def llama_api(prompt):
     payload = json.dumps({
@@ -58,29 +123,32 @@ def llama_api(prompt):
     response_t = json.loads(response.text)
     return response_t["output"]
 
-try:
-    llm = LlamaCpp(
-        model_path=model_path,
-        input={
-            "temperature": 0.6,      # Lowered temperature for faster responses
-            "max_length": 1000,      # Reduced max length
-            "top_p": 0.9            # Adjusted for balance of speed/quality
-        },
-        callback_manager=callback_manager,
-        max_tokens=1000,            # Reduced max tokens
-        n_batch=32,                 # Smaller batch size for faster processing
-        n_gpu_layers=60,           
-        verbose=False,
-        n_ctx=1000,                # Reduced context window
-        streaming=True,            # Enable streaming for faster first response
-        f16_kv=True,              # Use float16 for key/value cache
-        use_mlock=True,           # Keep model in memory
-    )
-except NameError:
-    pass
+def Print_AI_out(prompt, ai_option):
+    try:
+        # Simplified prompt without special formatting
+        formatted_prompt = f"""
+You are a cybersecurity expert assistant. Please help with this query:
+{prompt}
 
-chat_history = []
-
+Provide your response in clear, concise language using Markdown formatting where appropriate.
+"""
+        
+        if ai_option == "GEMINI":
+            response = gemini_api(formatted_prompt)
+        elif ai_option == "OPENAI":
+            response = openai_api(formatted_prompt)
+        elif ai_option == "RUNPOD":
+            response = llama_api(formatted_prompt)
+        # elif ai_option == "LLAMALOCAL":
+        #     response = llm(formatted_prompt)
+        else:
+            response = "Invalid AI option selected"
+        
+        return str(response).strip()
+        
+    except Exception as e:
+        print(f"Detailed Print_AI_out error: {str(e)}")  # This will help debug
+        return "I apologize, but I'm having trouble processing that request."
 
 def clearscr() -> None:
     try:
@@ -95,31 +163,10 @@ def clearscr() -> None:
     except Exception:
         pass
 
-
-def Print_AI_out(prompt, ai_option):
-    try:
-        # Simplified prompt template
-        formatted_prompt = f"Be concise. Answer: {prompt}"
-        
-        # Get AI response with timeout
-        if ai_option == "RUNPOD":
-            response = llama_api(formatted_prompt)
-        else:
-            response = llm(formatted_prompt)
-        
-        # Simplified return
-        return str(response).strip()
-        
-    except Exception as e:
-        print(f"Error in Print_AI_out: {str(e)}")
-        return "I apologize, but I'm having trouble processing that request."
-
-
 def save_chat(chat_history: list[Any, Any]) -> None:
     f = open('chat_history.json', 'w+')
     f.write(json.dumps(chat_history))
     f.close
-
 
 def vuln_analysis(scan_type, file_path, ai_option) -> Panel:
     global chat_history
@@ -154,7 +201,7 @@ def vuln_analysis(scan_type, file_path, ai_option) -> Panel:
     if ai_option == "RUNPOD":
         out = llama_api(prompt)
     else:
-        out = llm(prompt)
+        out = Print_AI_out(prompt, ai_option)
     ai_out = Markdown(out)
     message_panel = Panel(
         Align.center(
@@ -172,7 +219,6 @@ def vuln_analysis(scan_type, file_path, ai_option) -> Panel:
     }
     chat_history.append(save_data)
     return message_panel
-
 
 def static_analysis(language_used, file_path, ai_option) -> Panel:
     global chat_history
@@ -192,7 +238,7 @@ def static_analysis(language_used, file_path, ai_option) -> Panel:
     if ai_option == "RUNPOD":
         out = llama_api(prompt)
     else:
-        out = llm(prompt)
+        out = Print_AI_out(prompt, ai_option)
     ai_out = Markdown(out)
     message_panel = Panel(
         Align.center(
@@ -210,7 +256,6 @@ def static_analysis(language_used, file_path, ai_option) -> Panel:
     }
     chat_history.append(save_data)
     return message_panel
-
 
 def main() -> None:
     clearscr()
@@ -294,7 +339,6 @@ def main() -> None:
                 pass
         except KeyboardInterrupt:
             pass
-
 
 if __name__ == "__main__":
     main()
