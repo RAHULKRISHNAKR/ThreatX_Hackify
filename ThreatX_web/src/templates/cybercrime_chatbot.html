@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cybercrime Chatbot UI</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/notification.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
@@ -302,10 +303,25 @@
         </div>
         <div class="controls">
             <button title="User Settings"><i class="fas fa-user-shield"></i></button>
-            <button title="Notifications"><i class="fas fa-bell"></i></button>
-            <button title="Security Dashboard"><i class="fas fa-tachometer-alt"></i></button>
+            <button id="notification-toggle" title="Notifications">
+                <i class="fas fa-bell"></i>
+                <span id="notification-badge" class="notification-badge"></span>
+            </button>
+            <button title="Security Dashboard" onclick="window.location.href='{{ url_for('dashboard') }}'"><i class="fas fa-tachometer-alt"></i></button>
         </div>
     </div>
+    
+    <!-- Notification Panel -->
+    <div id="notification-panel" class="notification-panel">
+        <div class="notification-header">
+            <h3>Notifications</h3>
+            <button id="close-notifications"><i class="fas fa-times"></i></button>
+        </div>
+        <div id="notifications-list" class="notification-list">
+            <!-- Notifications will be added here dynamically -->
+        </div>
+    </div>
+    
     <div class="content">
         <div class="chatbox">
             <div class="messages" id="chat-output">
@@ -319,6 +335,22 @@
             </form>
         </div>
     </div>
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script>
+        // Initialize notification count
+        document.addEventListener('DOMContentLoaded', function() {
+            // Close notification panel when X is clicked
+            const closeNotificationsBtn = document.getElementById('close-notifications');
+            if (closeNotificationsBtn) {
+                closeNotificationsBtn.addEventListener('click', function() {
+                    const notificationPanel = document.getElementById('notification-panel');
+                    if (notificationPanel) {
+                        notificationPanel.style.display = 'none';
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>

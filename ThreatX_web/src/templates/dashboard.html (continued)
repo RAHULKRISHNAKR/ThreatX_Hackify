@@ -1,0 +1,260 @@
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize WebSocket connection
+            const socket = new WebSocket(`${window.location.protocol === 'https:' ? 'wss:' : 'ws:'}//${window.location.host}/ws/notifications`);
+            
+            // Handle WebSocket events
+            socket.onopen = function(e) {
+                console.log("Dashboard WebSocket connection established");
+            };
+            
+            socket.onmessage = function(event) {
+                try {
+                    const data = JSON.parse(event.data);
+                    
+                    if (data.type === 'notification') {
+                        // Add notification to the table
+                        addThreatToTable(data.notification);
+                        
+                        // Update stats
+                        updateStats();
+                    }
+                } catch (e) {
+                    console.error("Error processing WebSocket message:", e);
+                }
+            };
+            
+            socket.onclose = function(event) {
+                console.log("WebSocket connection closed, attempting to reconnect in 5s");
+                setTimeout(initWebSocket, 5000);
+            };
+            
+            // Initialize charts
+            initializeCharts();
+            
+            // Load initial data
+            fetchThreats();
+            fetchStats();
+            
+            // Add event listeners
+            document.querySelector('.chart-options').addEventListener('click', function(e) {
+                if (e.target.classList.contains('chart-option')) {
+                    // Remove active class from all options
+                    document.querySelectorAll('.chart-option').forEach(opt => {
+                        opt.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked option
+                    e.target.classList.add('active');
+                    
+                    // Update chart data based on selected timeframe
+                    updateChartData(e.target.textContent.trim().toLowerCase());
+                }
+            });
+            
+            // Add refresh button event listener
+            document.querySelector('.threat-table-action[title="Refresh"]').addEventListener('click', function() {
+                fetchThreats();
+            });
+        });
+        
+        // Function to initialize charts
+        function initializeCharts() {
+            const ctx = document.getElementById('threatChart').getContext('2d');
+            
+            window.threatChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [
+                        {
+                            label: 'Spam Calls',
+                            data: [5, 12, 8, 15, 10, 6, 13],
+                            borderColor: '#e74c3c',
+                            backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                            tension: 0.3,
+                            fill: true
+                        },
+                        {
+                            label: 'Spam Messages',
+                            data: [10, 15, 12, 20, 18, 15, 22],
+                            borderColor: '#f1c40f',
+                            backgroundColor: 'rgba(241, 196, 15, 0.1)',
+                            tension: 0.3,
+                            fill: true
+                        },
+                        {
+                            label: 'Malicious Content',
+                            data: [3, 5, 8, 13, 11, 9, 7],
+                            borderColor: '#3498db',
+                            backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                            tension: 0.3,
+                            fill: true
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: '#a0a8c0',
+                                font: {
+                                    family: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
+                                }
+                            }
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.05)'
+                            },
+                            ticks: {
+                                color: '#a0a8c0'
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.05)'
+                            },
+                            ticks: {
+                                color: '#a0a8c0'
+                            }
+                        }
+                    },
+                    interaction: {
+                        mode: 'nearest',
+                        axis: 'x',
+                        intersect: false
+                    }
+                }
+            });
+        }
+        
+        // Function to update chart data based on timeframe
+        function updateChartData(timeframe) {
+            // Fetch data from API based on timeframe
+            fetch(`/api/threats/stats?timeframe=${timeframe}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Update chart with new data
+                    if (data.trend && window.threatChart) {
+                        window.threatChart.data.labels = data.trend.map(item => item.date);
+                        window.threatChart.data.datasets[0].data = data.trend.map(item => item.spam_calls || 0);
+                        window.threatChart.data.datasets[1].data = data.trend.map(item => item.spam_messages || 0);
+                        window.threatChart.data.datasets[2].data = data.trend.map(item => item.malicious_content || 0);
+                        window.threatChart.update();
+                    }
+                })
+                .catch(error => console.error('Error fetching chart data:', error));
+        }
+        
+        // Function to add threat to table
+        function addThreatToTable(threat) {
+            const tableBody = document.getElementById('threatTableBody');
+            
+            // Create new row
+            const row = document.createElement('tr');
+            
+            // Format date
+            const date = new Date(threat.timestamp);
+            const formattedDate = date.toLocaleDateString() + ' ' + date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            
+            // Set row content
+            row.innerHTML = `
+                <td>${threat.categories ? Object.keys(threat.categories)[0].replace('_', ' ') : threat.type || 'Unknown'}</td>
+                <td>${threat.source_info?.ip || threat.source_info?.phone || threat.source_info?.email || 'Unknown'}</td>
+                <td>${formattedDate}</td>
+                <td><span class="threat-severity ${threat.severity}">${threat.severity}</span></td>
+                <td>Active</td>
+                <td>
+                    <button class="threat-action-btn" onclick="viewThreatDetails('${threat.id}')">View</button>
+                    <button class="threat-action-btn" onclick="blockSource('${threat.id}')">Block</button>
+                </td>
+            `;
+            
+            // Add to table
+            tableBody.prepend(row);
+            
+            // Limit table rows
+            if (tableBody.children.length > 10) {
+                tableBody.removeChild(tableBody.lastChild);
+            }
+        }
+        
+        // Function to fetch threats
+        function fetchThreats() {
+            fetch('/api/threats/recent?limit=10')
+                .then(response => response.json())
+                .then(data => {
+                    // Clear table
+                    const tableBody = document.getElementById('threatTableBody');
+                    tableBody.innerHTML = '';
+                    
+                    // Add threats to table
+                    if (data.threats && data.threats.length) {
+                        data.threats.forEach(threat => {
+                            addThreatToTable(threat);
+                        });
+                    } else {
+                        // Show no threats message
+                        tableBody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--text-dim)">No recent threats detected</td></tr>`;
+                    }
+                })
+                .catch(error => console.error('Error fetching threats:', error));
+        }
+        
+        // Function to fetch stats
+        function fetchStats() {
+            fetch('/api/threats/stats')
+                .then(response => response.json())
+                .then(data => {
+                    // Update stat cards
+                    document.querySelector('.stats-grid .stat-card:nth-child(1) .stat-value').textContent = data.total_threats || 0;
+                    document.querySelector('.stats-grid .stat-card:nth-child(2) .stat-value').textContent = data.by_category?.spam_call || 0;
+                    document.querySelector('.stats-grid .stat-card:nth-child(3) .stat-value').textContent = data.by_category?.spam_sms || 0;
+                    document.querySelector('.stats-grid .stat-card:nth-child(4) .stat-value').textContent = data.by_category?.malicious_content || 0;
+                })
+                .catch(error => console.error('Error fetching stats:', error));
+        }
+        
+        // Function to view threat details
+        function viewThreatDetails(threatId) {
+            // Show threat details modal or navigate to threat details page
+            console.log('View threat details:', threatId);
+            
+            // This could be expanded to show a modal with detailed information
+            alert('Viewing threat details will be implemented in a future update.');
+        }
+        
+        // Function to block source
+        function blockSource(threatId) {
+            // Call API to block the threat source
+            fetch(`/api/threats/${threatId}/block`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Source has been blocked successfully');
+                    fetchThreats(); // Refresh the table
+                } else {
+                    alert('Failed to block source: ' + data.error);
+                }
+            })
+            .catch(error => console.error('Error blocking source:', error));
+        }
+    </script>
+</body>
+</html>

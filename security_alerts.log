@@ -1,0 +1,466 @@
+2025-03-02 04:41:14,624 - INFO - ThreatDetector initialized
+2025-03-02 04:41:14,759 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-02 04:41:14,759 - INFO - [33mPress CTRL+C to quit[0m
+2025-03-02 04:41:14,759 - INFO -  * Restarting with watchdog (windowsapi)
+2025-03-02 04:41:22,439 - INFO - ThreatDetector initialized
+2025-03-02 04:41:22,498 - WARNING -  * Debugger is active!
+2025-03-02 04:41:22,515 - INFO -  * Debugger PIN: 976-789-947
+2025-03-02 04:42:53,393 - INFO - ThreatDetector initialized
+2025-03-02 04:42:53,474 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-02 04:42:53,474 - INFO - [33mPress CTRL+C to quit[0m
+2025-03-02 04:42:53,474 - INFO -  * Restarting with watchdog (windowsapi)
+2025-03-02 04:43:03,231 - INFO - ThreatDetector initialized
+2025-03-02 04:43:03,282 - WARNING -  * Debugger is active!
+2025-03-02 04:43:03,290 - INFO -  * Debugger PIN: 976-789-947
+2025-03-02 04:51:03,138 - INFO - ThreatDetector initialized
+2025-03-02 04:51:03,207 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-02 04:51:03,207 - INFO - [33mPress CTRL+C to quit[0m
+2025-03-02 04:51:03,207 - INFO -  * Restarting with watchdog (windowsapi)
+2025-03-02 04:51:10,521 - INFO - ThreatDetector initialized
+2025-03-02 04:51:10,579 - WARNING -  * Debugger is active!
+2025-03-02 04:51:10,579 - INFO -  * Debugger PIN: 976-789-947
+2025-03-02 04:51:42,352 - INFO - 127.0.0.1 - - [02/Mar/2025 04:51:42] "GET / HTTP/1.1" 200 -
+2025-03-02 04:51:42,532 - INFO - 127.0.0.1 - - [02/Mar/2025 04:51:42] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-03-02 04:51:47,839 - INFO - 127.0.0.1 - - [02/Mar/2025 04:51:47] "GET /chatbot HTTP/1.1" 200 -
+2025-03-02 04:51:47,875 - INFO - 127.0.0.1 - - [02/Mar/2025 04:51:47] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-03-02 04:51:47,875 - INFO - 127.0.0.1 - - [02/Mar/2025 04:51:47] "GET /static/css/notification.css HTTP/1.1" 200 -
+2025-03-02 04:51:47,899 - INFO - 127.0.0.1 - - [02/Mar/2025 04:51:47] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-03-02 04:51:47,962 - INFO - 127.0.0.1 - - [02/Mar/2025 04:51:47] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:51:52,976 - INFO - 127.0.0.1 - - [02/Mar/2025 04:51:52] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:51:57,992 - INFO - 127.0.0.1 - - [02/Mar/2025 04:51:57] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:52:03,000 - INFO - 127.0.0.1 - - [02/Mar/2025 04:52:03] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:52:05,567 - INFO - 127.0.0.1 - - [02/Mar/2025 04:52:05] "GET /api/notifications?since_id=0 HTTP/1.1" 200 -
+2025-03-02 04:52:06,514 - INFO - 127.0.0.1 - - [02/Mar/2025 04:52:06] "POST /api/chat HTTP/1.1" 200 -
+2025-03-02 04:52:08,009 - INFO - 127.0.0.1 - - [02/Mar/2025 04:52:08] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:52:13,017 - INFO - 127.0.0.1 - - [02/Mar/2025 04:52:13] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:52:17,169 - INFO - 127.0.0.1 - - [02/Mar/2025 04:52:17] "GET /api/notifications?since_id=0 HTTP/1.1" 200 -
+2025-03-02 04:52:17,969 - INFO - 127.0.0.1 - - [02/Mar/2025 04:52:17] "GET /api/notifications?since_id=0 HTTP/1.1" 200 -
+2025-03-02 04:52:18,048 - INFO - 127.0.0.1 - - [02/Mar/2025 04:52:18] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:52:23,083 - INFO - 127.0.0.1 - - [02/Mar/2025 04:52:23] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:52:28,120 - INFO - 127.0.0.1 - - [02/Mar/2025 04:52:28] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:52:33,836 - INFO - 127.0.0.1 - - [02/Mar/2025 04:52:33] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:52:39,901 - INFO - 127.0.0.1 - - [02/Mar/2025 04:52:39] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:52:45,877 - INFO - 127.0.0.1 - - [02/Mar/2025 04:52:45] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:52:48,816 - INFO - 127.0.0.1 - - [02/Mar/2025 04:52:48] "GET /api/notifications?since_id=0 HTTP/1.1" 200 -
+2025-03-02 04:52:51,940 - INFO - 127.0.0.1 - - [02/Mar/2025 04:52:51] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:52:58,295 - INFO - 127.0.0.1 - - [02/Mar/2025 04:52:58] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:53:04,215 - INFO - 127.0.0.1 - - [02/Mar/2025 04:53:04] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:53:11,521 - INFO - 127.0.0.1 - - [02/Mar/2025 04:53:11] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:54:30,118 - INFO - ThreatDetector initialized
+2025-03-02 04:54:30,225 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-02 04:54:30,225 - INFO - [33mPress CTRL+C to quit[0m
+2025-03-02 04:54:30,225 - INFO -  * Restarting with watchdog (windowsapi)
+2025-03-02 04:54:38,592 - INFO - ThreatDetector initialized
+2025-03-02 04:54:38,720 - WARNING -  * Debugger is active!
+2025-03-02 04:54:38,727 - INFO -  * Debugger PIN: 976-789-947
+2025-03-02 04:54:38,806 - INFO - 127.0.0.1 - - [02/Mar/2025 04:54:38] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:54:41,573 - INFO - 127.0.0.1 - - [02/Mar/2025 04:54:41] "GET / HTTP/1.1" 200 -
+2025-03-02 04:54:58,296 - INFO - 127.0.0.1 - - [02/Mar/2025 04:54:58] "GET /chatbot HTTP/1.1" 200 -
+2025-03-02 04:54:58,559 - INFO - 127.0.0.1 - - [02/Mar/2025 04:54:58] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-03-02 04:54:58,684 - INFO - 127.0.0.1 - - [02/Mar/2025 04:54:58] "GET /static/css/notification.css HTTP/1.1" 200 -
+2025-03-02 04:54:58,684 - INFO - 127.0.0.1 - - [02/Mar/2025 04:54:58] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-03-02 04:54:59,135 - INFO - 127.0.0.1 - - [02/Mar/2025 04:54:59] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:54:59,425 - INFO - 127.0.0.1 - - [02/Mar/2025 04:54:59] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-03-02 04:55:04,884 - INFO - 127.0.0.1 - - [02/Mar/2025 04:55:04] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:55:08,067 - INFO - 127.0.0.1 - - [02/Mar/2025 04:55:08] "[33mGET /dashboard HTTP/1.1[0m" 404 -
+2025-03-02 04:55:11,131 - INFO - 127.0.0.1 - - [02/Mar/2025 04:55:11] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:55:17,119 - INFO - 127.0.0.1 - - [02/Mar/2025 04:55:17] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:55:23,123 - INFO - 127.0.0.1 - - [02/Mar/2025 04:55:23] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:55:29,127 - INFO - 127.0.0.1 - - [02/Mar/2025 04:55:29] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:55:30,132 - INFO - 127.0.0.1 - - [02/Mar/2025 04:55:30] "GET /api/notifications?since_id=0 HTTP/1.1" 200 -
+2025-03-02 04:55:35,146 - INFO - 127.0.0.1 - - [02/Mar/2025 04:55:35] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:55:41,135 - INFO - 127.0.0.1 - - [02/Mar/2025 04:55:41] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:55:47,089 - INFO - 127.0.0.1 - - [02/Mar/2025 04:55:47] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:55:52,411 - INFO - 127.0.0.1 - - [02/Mar/2025 04:55:52] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:55:53,016 - INFO - 127.0.0.1 - - [02/Mar/2025 04:55:53] "POST /api/chat HTTP/1.1" 200 -
+2025-03-02 04:55:56,932 - INFO - 127.0.0.1 - - [02/Mar/2025 04:55:56] "GET /api/notifications?since_id=0 HTTP/1.1" 200 -
+2025-03-02 04:55:57,725 - INFO - 127.0.0.1 - - [02/Mar/2025 04:55:57] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:55:58,840 - INFO - 127.0.0.1 - - [02/Mar/2025 04:55:58] "GET /api/notifications?since_id=0 HTTP/1.1" 200 -
+2025-03-02 04:56:03,041 - INFO - 127.0.0.1 - - [02/Mar/2025 04:56:03] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:56:08,368 - INFO - 127.0.0.1 - - [02/Mar/2025 04:56:08] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:56:14,118 - INFO - 127.0.0.1 - - [02/Mar/2025 04:56:14] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:56:20,117 - INFO - 127.0.0.1 - - [02/Mar/2025 04:56:20] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:56:26,126 - INFO - 127.0.0.1 - - [02/Mar/2025 04:56:26] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:56:30,132 - INFO - 127.0.0.1 - - [02/Mar/2025 04:56:30] "GET /api/notifications?since_id=0 HTTP/1.1" 200 -
+2025-03-02 04:56:32,132 - INFO - 127.0.0.1 - - [02/Mar/2025 04:56:32] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:56:38,152 - INFO - 127.0.0.1 - - [02/Mar/2025 04:56:38] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:56:44,172 - INFO - 127.0.0.1 - - [02/Mar/2025 04:56:44] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:56:50,187 - INFO - 127.0.0.1 - - [02/Mar/2025 04:56:50] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:56:55,239 - INFO - 127.0.0.1 - - [02/Mar/2025 04:56:55] "GET /api/notifications?since_id=0 HTTP/1.1" 200 -
+2025-03-02 04:56:55,610 - INFO - 127.0.0.1 - - [02/Mar/2025 04:56:55] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:56:56,613 - INFO - 127.0.0.1 - - [02/Mar/2025 04:56:56] "GET /api/notifications?since_id=0 HTTP/1.1" 200 -
+2025-03-02 04:56:58,836 - INFO - 127.0.0.1 - - [02/Mar/2025 04:56:58] "GET /api/notifications?since_id=0 HTTP/1.1" 200 -
+2025-03-02 04:57:01,139 - INFO - 127.0.0.1 - - [02/Mar/2025 04:57:01] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:57:07,371 - INFO - 127.0.0.1 - - [02/Mar/2025 04:57:07] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:57:13,936 - INFO - 127.0.0.1 - - [02/Mar/2025 04:57:13] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:57:22,615 - INFO - 127.0.0.1 - - [02/Mar/2025 04:57:22] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:57:30,126 - INFO - 127.0.0.1 - - [02/Mar/2025 04:57:30] "GET /api/notifications?since_id=0 HTTP/1.1" 200 -
+2025-03-02 04:57:32,717 - INFO - 127.0.0.1 - - [02/Mar/2025 04:57:32] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:57:40,183 - INFO - 127.0.0.1 - - [02/Mar/2025 04:57:40] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:57:49,088 - INFO - 127.0.0.1 - - [02/Mar/2025 04:57:49] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:57:55,122 - INFO - 127.0.0.1 - - [02/Mar/2025 04:57:55] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:57:59,814 - INFO - 127.0.0.1 - - [02/Mar/2025 04:57:59] "GET /api/notifications?since_id=0 HTTP/1.1" 200 -
+2025-03-02 04:58:01,118 - INFO - 127.0.0.1 - - [02/Mar/2025 04:58:01] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:58:07,123 - INFO - 127.0.0.1 - - [02/Mar/2025 04:58:07] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:58:13,124 - INFO - 127.0.0.1 - - [02/Mar/2025 04:58:13] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:58:19,125 - INFO - 127.0.0.1 - - [02/Mar/2025 04:58:19] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:58:25,133 - INFO - 127.0.0.1 - - [02/Mar/2025 04:58:25] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:58:31,128 - INFO - 127.0.0.1 - - [02/Mar/2025 04:58:31] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:58:37,144 - INFO - 127.0.0.1 - - [02/Mar/2025 04:58:37] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:58:43,143 - INFO - 127.0.0.1 - - [02/Mar/2025 04:58:43] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:58:49,150 - INFO - 127.0.0.1 - - [02/Mar/2025 04:58:49] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:58:55,190 - INFO - 127.0.0.1 - - [02/Mar/2025 04:58:55] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:59:01,194 - INFO - 127.0.0.1 - - [02/Mar/2025 04:59:01] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:59:07,433 - INFO - 127.0.0.1 - - [02/Mar/2025 04:59:07] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:59:13,479 - INFO - 127.0.0.1 - - [02/Mar/2025 04:59:13] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:59:19,923 - INFO - 127.0.0.1 - - [02/Mar/2025 04:59:19] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:59:22,125 - INFO - 127.0.0.1 - - [02/Mar/2025 04:59:22] "GET /api/notifications?since_id=0 HTTP/1.1" 200 -
+2025-03-02 04:59:27,951 - INFO - 127.0.0.1 - - [02/Mar/2025 04:59:27] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:59:37,246 - INFO - 127.0.0.1 - - [02/Mar/2025 04:59:37] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:59:47,464 - INFO - 127.0.0.1 - - [02/Mar/2025 04:59:47] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 04:59:55,626 - INFO - 127.0.0.1 - - [02/Mar/2025 04:59:55] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:00:02,418 - INFO - 127.0.0.1 - - [02/Mar/2025 05:00:02] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:00:04,400 - INFO - 127.0.0.1 - - [02/Mar/2025 05:00:04] "GET /api/notifications?since_id=0 HTTP/1.1" 200 -
+2025-03-02 05:00:11,800 - INFO - 127.0.0.1 - - [02/Mar/2025 05:00:11] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:00:21,418 - INFO - 127.0.0.1 - - [02/Mar/2025 05:00:21] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:00:29,599 - INFO - 127.0.0.1 - - [02/Mar/2025 05:00:29] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:00:30,116 - INFO - 127.0.0.1 - - [02/Mar/2025 05:00:30] "GET /api/notifications?since_id=0 HTTP/1.1" 200 -
+2025-03-02 05:00:36,819 - INFO - 127.0.0.1 - - [02/Mar/2025 05:00:36] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:00:45,313 - INFO - 127.0.0.1 - - [02/Mar/2025 05:00:45] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:00:55,119 - INFO - 127.0.0.1 - - [02/Mar/2025 05:00:55] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:00:59,818 - INFO - 127.0.0.1 - - [02/Mar/2025 05:00:59] "GET /api/notifications?since_id=0 HTTP/1.1" 200 -
+2025-03-02 05:01:05,134 - INFO - 127.0.0.1 - - [02/Mar/2025 05:01:05] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:01:15,137 - INFO - 127.0.0.1 - - [02/Mar/2025 05:01:15] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:01:24,818 - INFO - 127.0.0.1 - - [02/Mar/2025 05:01:24] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:01:34,451 - INFO - 127.0.0.1 - - [02/Mar/2025 05:01:34] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:01:44,930 - INFO - 127.0.0.1 - - [02/Mar/2025 05:01:44] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:01:52,325 - INFO - 127.0.0.1 - - [02/Mar/2025 05:01:52] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:01:58,120 - INFO - 127.0.0.1 - - [02/Mar/2025 05:01:58] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:02:04,119 - INFO - 127.0.0.1 - - [02/Mar/2025 05:02:04] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:02:10,124 - INFO - 127.0.0.1 - - [02/Mar/2025 05:02:10] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:02:16,112 - INFO - 127.0.0.1 - - [02/Mar/2025 05:02:16] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:02:22,126 - INFO - 127.0.0.1 - - [02/Mar/2025 05:02:22] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:02:22,130 - INFO - 127.0.0.1 - - [02/Mar/2025 05:02:22] "GET /api/notifications?since_id=0 HTTP/1.1" 200 -
+2025-03-02 05:02:28,117 - INFO - 127.0.0.1 - - [02/Mar/2025 05:02:28] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:02:34,135 - INFO - 127.0.0.1 - - [02/Mar/2025 05:02:34] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:02:40,132 - INFO - 127.0.0.1 - - [02/Mar/2025 05:02:40] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:02:46,134 - INFO - 127.0.0.1 - - [02/Mar/2025 05:02:46] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:02:52,143 - INFO - 127.0.0.1 - - [02/Mar/2025 05:02:52] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:02:58,182 - INFO - 127.0.0.1 - - [02/Mar/2025 05:02:58] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:03:04,271 - INFO - 127.0.0.1 - - [02/Mar/2025 05:03:04] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:03:10,301 - INFO - 127.0.0.1 - - [02/Mar/2025 05:03:10] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:03:16,273 - INFO - 127.0.0.1 - - [02/Mar/2025 05:03:16] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:03:21,807 - INFO - 127.0.0.1 - - [02/Mar/2025 05:03:21] "GET /api/notifications?since_id=0 HTTP/1.1" 200 -
+2025-03-02 05:03:22,581 - INFO - 127.0.0.1 - - [02/Mar/2025 05:03:22] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:03:26,124 - INFO - 127.0.0.1 - - [02/Mar/2025 05:03:26] "GET /api/notifications?since_id=0 HTTP/1.1" 200 -
+2025-03-02 05:03:28,836 - INFO - 127.0.0.1 - - [02/Mar/2025 05:03:28] "GET /api/notifications?since_id=0 HTTP/1.1" 200 -
+2025-03-02 05:03:29,341 - INFO - 127.0.0.1 - - [02/Mar/2025 05:03:29] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:03:36,983 - INFO - 127.0.0.1 - - [02/Mar/2025 05:03:36] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:03:43,858 - INFO - 127.0.0.1 - - [02/Mar/2025 05:03:43] "POST /api/chat HTTP/1.1" 200 -
+2025-03-02 05:03:46,405 - INFO - 127.0.0.1 - - [02/Mar/2025 05:03:46] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:03:53,666 - INFO - 127.0.0.1 - - [02/Mar/2025 05:03:53] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:03:58,833 - INFO - 127.0.0.1 - - [02/Mar/2025 05:03:58] "GET /api/notifications?since_id=0 HTTP/1.1" 200 -
+2025-03-02 05:03:58,985 - INFO - 127.0.0.1 - - [02/Mar/2025 05:03:58] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:04:04,299 - INFO - 127.0.0.1 - - [02/Mar/2025 05:04:04] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:04:09,620 - INFO - 127.0.0.1 - - [02/Mar/2025 05:04:09] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:04:14,941 - INFO - 127.0.0.1 - - [02/Mar/2025 05:04:14] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:04:20,254 - INFO - 127.0.0.1 - - [02/Mar/2025 05:04:20] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:04:25,567 - INFO - 127.0.0.1 - - [02/Mar/2025 05:04:25] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:04:29,151 - INFO - 127.0.0.1 - - [02/Mar/2025 05:04:29] "GET /api/notifications?since_id=0 HTTP/1.1" 200 -
+2025-03-02 05:04:30,908 - INFO - 127.0.0.1 - - [02/Mar/2025 05:04:30] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:04:36,251 - INFO - 127.0.0.1 - - [02/Mar/2025 05:04:36] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:04:41,584 - INFO - 127.0.0.1 - - [02/Mar/2025 05:04:41] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:04:46,930 - INFO - 127.0.0.1 - - [02/Mar/2025 05:04:46] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:04:53,207 - INFO - 127.0.0.1 - - [02/Mar/2025 05:04:53] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:04:59,234 - INFO - 127.0.0.1 - - [02/Mar/2025 05:04:59] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:04:59,813 - INFO - 127.0.0.1 - - [02/Mar/2025 05:04:59] "GET /api/notifications?since_id=0 HTTP/1.1" 200 -
+2025-03-02 05:05:04,693 - INFO - 127.0.0.1 - - [02/Mar/2025 05:05:04] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:05:10,283 - INFO - 127.0.0.1 - - [02/Mar/2025 05:05:10] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:05:16,445 - INFO - 127.0.0.1 - - [02/Mar/2025 05:05:16] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:05:17,319 - INFO - 127.0.0.1 - - [02/Mar/2025 05:05:17] "[33mGET /dashboard HTTP/1.1[0m" 404 -
+2025-03-02 05:05:24,133 - INFO - 127.0.0.1 - - [02/Mar/2025 05:05:24] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:05:29,814 - INFO - 127.0.0.1 - - [02/Mar/2025 05:05:29] "GET /api/notifications?since_id=0 HTTP/1.1" 200 -
+2025-03-02 05:05:31,888 - INFO - 127.0.0.1 - - [02/Mar/2025 05:05:31] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:05:40,711 - INFO - 127.0.0.1 - - [02/Mar/2025 05:05:40] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:05:48,344 - INFO - 127.0.0.1 - - [02/Mar/2025 05:05:48] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:05:56,090 - INFO - 127.0.0.1 - - [02/Mar/2025 05:05:56] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:06:00,125 - INFO - 127.0.0.1 - - [02/Mar/2025 05:06:00] "GET /api/notifications?since_id=0 HTTP/1.1" 200 -
+2025-03-02 05:06:02,117 - INFO - 127.0.0.1 - - [02/Mar/2025 05:06:02] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:06:08,118 - INFO - 127.0.0.1 - - [02/Mar/2025 05:06:08] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:06:14,123 - INFO - 127.0.0.1 - - [02/Mar/2025 05:06:14] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:06:20,125 - INFO - 127.0.0.1 - - [02/Mar/2025 05:06:20] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:06:26,126 - INFO - 127.0.0.1 - - [02/Mar/2025 05:06:26] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:06:32,119 - INFO - 127.0.0.1 - - [02/Mar/2025 05:06:32] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:06:38,134 - INFO - 127.0.0.1 - - [02/Mar/2025 05:06:38] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:06:44,145 - INFO - 127.0.0.1 - - [02/Mar/2025 05:06:44] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:06:47,365 - INFO - 127.0.0.1 - - [02/Mar/2025 05:06:47] "GET /api/notifications?since_id=0 HTTP/1.1" 200 -
+2025-03-02 05:06:49,489 - INFO - 127.0.0.1 - - [02/Mar/2025 05:06:49] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:06:53,284 - INFO - 127.0.0.1 - - [02/Mar/2025 05:06:53] "GET /chatbot HTTP/1.1" 200 -
+2025-03-02 05:06:53,552 - INFO - 127.0.0.1 - - [02/Mar/2025 05:06:53] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-03-02 05:06:53,620 - INFO - 127.0.0.1 - - [02/Mar/2025 05:06:53] "[36mGET /static/css/notification.css HTTP/1.1[0m" 304 -
+2025-03-02 05:06:53,620 - INFO - 127.0.0.1 - - [02/Mar/2025 05:06:53] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-03-02 05:06:54,007 - INFO - 127.0.0.1 - - [02/Mar/2025 05:06:54] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:06:59,363 - INFO - 127.0.0.1 - - [02/Mar/2025 05:06:59] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:07:05,266 - INFO - 127.0.0.1 - - [02/Mar/2025 05:07:05] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:07:08,004 - INFO -  * Detected change in 'c:\\Users\\rahul\\OneDrive\\Documents\\GitHub\\ThreatX_Hackify\\ThreatX_web\\src\\app.py', reloading
+2025-03-02 05:07:08,004 - INFO -  * Detected change in 'c:\\Users\\rahul\\OneDrive\\Documents\\GitHub\\ThreatX_Hackify\\ThreatX_web\\src\\app.py', reloading
+2025-03-02 05:07:08,004 - INFO -  * Detected change in 'c:\\Users\\rahul\\OneDrive\\Documents\\GitHub\\ThreatX_Hackify\\ThreatX_web\\src\\app.py', reloading
+2025-03-02 05:07:11,269 - INFO -  * Restarting with watchdog (windowsapi)
+2025-03-02 05:07:17,875 - INFO - ThreatDetector initialized
+2025-03-02 05:07:17,958 - WARNING -  * Debugger is active!
+2025-03-02 05:07:17,960 - INFO -  * Debugger PIN: 976-789-947
+2025-03-02 05:07:17,989 - INFO - 127.0.0.1 - - [02/Mar/2025 05:07:17] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:07:24,136 - INFO - 127.0.0.1 - - [02/Mar/2025 05:07:24] "GET /api/notifications?since_id=0 HTTP/1.1" 200 -
+2025-03-02 05:07:24,337 - INFO - 127.0.0.1 - - [02/Mar/2025 05:07:24] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:07:26,031 - INFO -  * Detected change in 'c:\\Users\\rahul\\OneDrive\\Documents\\GitHub\\ThreatX_Hackify\\ThreatX_web\\src\\hackbot\\threat_detector.py', reloading
+2025-03-02 05:07:26,036 - INFO -  * Detected change in 'c:\\Users\\rahul\\OneDrive\\Documents\\GitHub\\ThreatX_Hackify\\ThreatX_web\\src\\hackbot\\threat_detector.py', reloading
+2025-03-02 05:07:26,039 - INFO -  * Detected change in 'c:\\Users\\rahul\\OneDrive\\Documents\\GitHub\\ThreatX_Hackify\\ThreatX_web\\src\\hackbot\\threat_detector.py', reloading
+2025-03-02 05:07:28,406 - INFO -  * Restarting with watchdog (windowsapi)
+2025-03-02 05:34:14,628 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-02 05:34:14,628 - INFO - [33mPress CTRL+C to quit[0m
+2025-03-02 05:34:14,628 - INFO -  * Restarting with watchdog (windowsapi)
+2025-03-02 05:34:20,640 - WARNING -  * Debugger is active!
+2025-03-02 05:34:20,647 - INFO -  * Debugger PIN: 976-789-947
+2025-03-02 05:34:38,759 - INFO - 127.0.0.1 - - [02/Mar/2025 05:34:38] "GET /chatbot HTTP/1.1" 200 -
+2025-03-02 05:34:38,995 - INFO - 127.0.0.1 - - [02/Mar/2025 05:34:38] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-03-02 05:34:39,401 - INFO - 127.0.0.1 - - [02/Mar/2025 05:34:39] "[36mGET /static/css/notification.css HTTP/1.1[0m" 304 -
+2025-03-02 05:34:39,406 - INFO - 127.0.0.1 - - [02/Mar/2025 05:34:39] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-03-02 05:34:39,846 - INFO - 127.0.0.1 - - [02/Mar/2025 05:34:39] "GET /socket.io/?EIO=4&transport=polling&t=PLKAq_n HTTP/1.1" 200 -
+2025-03-02 05:34:39,885 - INFO - 127.0.0.1 - - [02/Mar/2025 05:34:39] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-03-02 05:34:40,106 - INFO - 127.0.0.1 - - [02/Mar/2025 05:34:40] "POST /socket.io/?EIO=4&transport=polling&t=PLKAr4g&sid=c32OH187zCJM_YiDAAAA HTTP/1.1" 200 -
+2025-03-02 05:34:40,163 - INFO - 127.0.0.1 - - [02/Mar/2025 05:34:40] "GET /socket.io/?EIO=4&transport=polling&t=PLKAr4h&sid=c32OH187zCJM_YiDAAAA HTTP/1.1" 200 -
+2025-03-02 05:34:40,172 - INFO - 127.0.0.1 - - [02/Mar/2025 05:34:40] "GET /socket.io/?EIO=4&transport=polling&t=PLKAr9j&sid=c32OH187zCJM_YiDAAAA HTTP/1.1" 200 -
+2025-03-02 05:34:41,132 - INFO - 127.0.0.1 - - [02/Mar/2025 05:34:41] "GET /socket.io/?EIO=4&transport=websocket&sid=c32OH187zCJM_YiDAAAA HTTP/1.1" 200 -
+2025-03-02 05:34:41,740 - INFO - 127.0.0.1 - - [02/Mar/2025 05:34:41] "GET /dashboard HTTP/1.1" 200 -
+2025-03-02 05:34:41,786 - INFO - 127.0.0.1 - - [02/Mar/2025 05:34:41] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-03-02 05:34:42,090 - INFO - 127.0.0.1 - - [02/Mar/2025 05:34:42] "[36mGET /static/css/notification.css HTTP/1.1[0m" 304 -
+2025-03-02 05:34:42,448 - INFO - 127.0.0.1 - - [02/Mar/2025 05:34:42] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:34:42,527 - INFO - 127.0.0.1 - - [02/Mar/2025 05:34:42] "GET /api/threats/recent?limit=10 HTTP/1.1" 200 -
+2025-03-02 05:34:42,527 - INFO - 127.0.0.1 - - [02/Mar/2025 05:34:42] "GET /api/threats/stats HTTP/1.1" 200 -
+2025-03-02 05:34:47,106 - INFO - 127.0.0.1 - - [02/Mar/2025 05:34:47] "GET /dashboard HTTP/1.1" 200 -
+2025-03-02 05:34:47,357 - INFO - 127.0.0.1 - - [02/Mar/2025 05:34:47] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-03-02 05:34:47,445 - INFO - 127.0.0.1 - - [02/Mar/2025 05:34:47] "[36mGET /static/css/notification.css HTTP/1.1[0m" 304 -
+2025-03-02 05:34:47,467 - INFO - 127.0.0.1 - - [02/Mar/2025 05:34:47] "GET /api/threats/recent?limit=10 HTTP/1.1" 200 -
+2025-03-02 05:34:47,771 - INFO - 127.0.0.1 - - [02/Mar/2025 05:34:47] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:34:47,780 - INFO - 127.0.0.1 - - [02/Mar/2025 05:34:47] "GET /api/threats/stats HTTP/1.1" 200 -
+2025-03-02 05:34:53,945 - INFO - 127.0.0.1 - - [02/Mar/2025 05:34:53] "GET /dashboard HTTP/1.1" 200 -
+2025-03-02 05:34:54,219 - INFO - 127.0.0.1 - - [02/Mar/2025 05:34:54] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-03-02 05:34:54,286 - INFO - 127.0.0.1 - - [02/Mar/2025 05:34:54] "[36mGET /static/css/notification.css HTTP/1.1[0m" 304 -
+2025-03-02 05:34:54,312 - INFO - 127.0.0.1 - - [02/Mar/2025 05:34:54] "GET /api/threats/recent?limit=10 HTTP/1.1" 200 -
+2025-03-02 05:34:54,603 - INFO - 127.0.0.1 - - [02/Mar/2025 05:34:54] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:34:54,622 - INFO - 127.0.0.1 - - [02/Mar/2025 05:34:54] "GET /api/threats/stats HTTP/1.1" 200 -
+2025-03-02 05:34:56,722 - INFO - 127.0.0.1 - - [02/Mar/2025 05:34:56] "GET /dashboard HTTP/1.1" 200 -
+2025-03-02 05:34:56,984 - INFO - 127.0.0.1 - - [02/Mar/2025 05:34:56] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-03-02 05:34:57,051 - INFO - 127.0.0.1 - - [02/Mar/2025 05:34:57] "[36mGET /static/css/notification.css HTTP/1.1[0m" 304 -
+2025-03-02 05:34:57,076 - INFO - 127.0.0.1 - - [02/Mar/2025 05:34:57] "GET /api/threats/recent?limit=10 HTTP/1.1" 200 -
+2025-03-02 05:34:57,369 - INFO - 127.0.0.1 - - [02/Mar/2025 05:34:57] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:34:57,376 - INFO - 127.0.0.1 - - [02/Mar/2025 05:34:57] "GET /api/threats/stats HTTP/1.1" 200 -
+2025-03-02 05:35:08,491 - INFO - 127.0.0.1 - - [02/Mar/2025 05:35:08] "GET /chatbot HTTP/1.1" 200 -
+2025-03-02 05:35:08,750 - INFO - 127.0.0.1 - - [02/Mar/2025 05:35:08] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-03-02 05:35:08,835 - INFO - 127.0.0.1 - - [02/Mar/2025 05:35:08] "[36mGET /static/css/notification.css HTTP/1.1[0m" 304 -
+2025-03-02 05:35:08,835 - INFO - 127.0.0.1 - - [02/Mar/2025 05:35:08] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-03-02 05:35:08,862 - INFO - 127.0.0.1 - - [02/Mar/2025 05:35:08] "GET /socket.io/?EIO=4&transport=polling&t=PLKAy9x HTTP/1.1" 200 -
+2025-03-02 05:35:09,201 - INFO - 127.0.0.1 - - [02/Mar/2025 05:35:09] "GET /socket.io/?EIO=4&transport=polling&t=PLKAyA9&sid=0bHOJ5Mq34vsxyQqAAAC HTTP/1.1" 200 -
+2025-03-02 05:35:09,203 - INFO - 127.0.0.1 - - [02/Mar/2025 05:35:09] "POST /socket.io/?EIO=4&transport=polling&t=PLKAyA7&sid=0bHOJ5Mq34vsxyQqAAAC HTTP/1.1" 200 -
+2025-03-02 05:35:12,519 - INFO - 127.0.0.1 - - [02/Mar/2025 05:35:12] "GET /socket.io/?EIO=4&transport=websocket&sid=0bHOJ5Mq34vsxyQqAAAC HTTP/1.1" 200 -
+2025-03-02 05:35:12,528 - INFO - 127.0.0.1 - - [02/Mar/2025 05:35:12] "GET /dashboard HTTP/1.1" 200 -
+2025-03-02 05:35:12,902 - INFO - 127.0.0.1 - - [02/Mar/2025 05:35:12] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-03-02 05:35:12,902 - INFO - 127.0.0.1 - - [02/Mar/2025 05:35:12] "[36mGET /static/css/notification.css HTTP/1.1[0m" 304 -
+2025-03-02 05:35:13,141 - INFO - 127.0.0.1 - - [02/Mar/2025 05:35:13] "GET /api/threats/recent?limit=10 HTTP/1.1" 200 -
+2025-03-02 05:35:13,223 - INFO - 127.0.0.1 - - [02/Mar/2025 05:35:13] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:35:13,237 - INFO - 127.0.0.1 - - [02/Mar/2025 05:35:13] "GET /api/threats/stats HTTP/1.1" 200 -
+2025-03-02 05:35:22,066 - INFO - 127.0.0.1 - - [02/Mar/2025 05:35:22] "GET /chatbot HTTP/1.1" 200 -
+2025-03-02 05:35:22,410 - INFO - 127.0.0.1 - - [02/Mar/2025 05:35:22] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-03-02 05:35:22,416 - INFO - 127.0.0.1 - - [02/Mar/2025 05:35:22] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-03-02 05:35:22,416 - INFO - 127.0.0.1 - - [02/Mar/2025 05:35:22] "[36mGET /static/css/notification.css HTTP/1.1[0m" 304 -
+2025-03-02 05:35:22,681 - INFO - 127.0.0.1 - - [02/Mar/2025 05:35:22] "GET /socket.io/?EIO=4&transport=polling&t=PLKA_U6 HTTP/1.1" 200 -
+2025-03-02 05:35:22,755 - INFO - 127.0.0.1 - - [02/Mar/2025 05:35:22] "POST /socket.io/?EIO=4&transport=polling&t=PLKA_X-&sid=G0qmF6ysgE0WuI5PAAAE HTTP/1.1" 200 -
+2025-03-02 05:35:22,999 - INFO - 127.0.0.1 - - [02/Mar/2025 05:35:22] "GET /socket.io/?EIO=4&transport=polling&t=PLKA_X_&sid=G0qmF6ysgE0WuI5PAAAE HTTP/1.1" 200 -
+2025-03-02 05:35:23,005 - INFO - 127.0.0.1 - - [02/Mar/2025 05:35:23] "GET /socket.io/?EIO=4&transport=polling&t=PLKA_cx&sid=G0qmF6ysgE0WuI5PAAAE HTTP/1.1" 200 -
+2025-03-02 05:35:24,908 - INFO - 127.0.0.1 - - [02/Mar/2025 05:35:24] "GET /api/notifications?since_id=0 HTTP/1.1" 200 -
+2025-03-02 05:35:52,268 - INFO - 127.0.0.1 - - [02/Mar/2025 05:35:52] "GET /test-notification?severity=critical HTTP/1.1" 200 -
+2025-03-02 05:35:52,453 - INFO - 127.0.0.1 - - [02/Mar/2025 05:35:52] "GET /api/notifications?since_id=1740873952268 HTTP/1.1" 200 -
+2025-03-02 05:35:56,314 - INFO - 127.0.0.1 - - [02/Mar/2025 05:35:56] "GET /test-notification?severity=critical HTTP/1.1" 200 -
+2025-03-02 05:36:00,353 - INFO - 127.0.0.1 - - [02/Mar/2025 05:36:00] "GET /test-notification?severity=low HTTP/1.1" 200 -
+2025-03-02 05:36:04,400 - INFO - 127.0.0.1 - - [02/Mar/2025 05:36:04] "GET /test-notification?severity=high HTTP/1.1" 200 -
+2025-03-02 05:36:08,435 - INFO - 127.0.0.1 - - [02/Mar/2025 05:36:08] "GET /test-notification?severity=critical HTTP/1.1" 200 -
+2025-03-02 05:36:22,750 - INFO - 127.0.0.1 - - [02/Mar/2025 05:36:22] "GET /api/notifications?since_id=1740873968435 HTTP/1.1" 200 -
+2025-03-02 05:36:52,449 - INFO - 127.0.0.1 - - [02/Mar/2025 05:36:52] "GET /api/notifications?since_id=1740874010629 HTTP/1.1" 200 -
+2025-03-02 05:36:53,766 - INFO - 127.0.0.1 - - [02/Mar/2025 05:36:53] "GET /socket.io/?EIO=4&transport=websocket&sid=G0qmF6ysgE0WuI5PAAAE HTTP/1.1" 200 -
+2025-03-02 05:36:54,077 - INFO - 127.0.0.1 - - [02/Mar/2025 05:36:54] "GET /dashboard HTTP/1.1" 200 -
+2025-03-02 05:36:54,336 - INFO - 127.0.0.1 - - [02/Mar/2025 05:36:54] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-03-02 05:36:54,428 - INFO - 127.0.0.1 - - [02/Mar/2025 05:36:54] "[36mGET /static/css/notification.css HTTP/1.1[0m" 304 -
+2025-03-02 05:36:54,455 - INFO - 127.0.0.1 - - [02/Mar/2025 05:36:54] "GET /api/threats/recent?limit=10 HTTP/1.1" 200 -
+2025-03-02 05:36:54,754 - INFO - 127.0.0.1 - - [02/Mar/2025 05:36:54] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:36:54,764 - INFO - 127.0.0.1 - - [02/Mar/2025 05:36:54] "GET /api/threats/stats HTTP/1.1" 200 -
+2025-03-02 05:37:36,889 - INFO - 127.0.0.1 - - [02/Mar/2025 05:37:36] "GET /dashboard HTTP/1.1" 200 -
+2025-03-02 05:37:37,151 - INFO - 127.0.0.1 - - [02/Mar/2025 05:37:37] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-03-02 05:37:37,222 - INFO - 127.0.0.1 - - [02/Mar/2025 05:37:37] "[36mGET /static/css/notification.css HTTP/1.1[0m" 304 -
+2025-03-02 05:37:37,245 - INFO - 127.0.0.1 - - [02/Mar/2025 05:37:37] "GET /api/threats/recent?limit=10 HTTP/1.1" 200 -
+2025-03-02 05:37:37,537 - INFO - 127.0.0.1 - - [02/Mar/2025 05:37:37] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:37:37,549 - INFO - 127.0.0.1 - - [02/Mar/2025 05:37:37] "GET /api/threats/stats HTTP/1.1" 200 -
+2025-03-02 05:37:44,522 - INFO - 127.0.0.1 - - [02/Mar/2025 05:37:44] "GET /chatbot HTTP/1.1" 200 -
+2025-03-02 05:37:44,787 - INFO - 127.0.0.1 - - [02/Mar/2025 05:37:44] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-03-02 05:37:44,861 - INFO - 127.0.0.1 - - [02/Mar/2025 05:37:44] "[36mGET /static/css/notification.css HTTP/1.1[0m" 304 -
+2025-03-02 05:37:44,861 - INFO - 127.0.0.1 - - [02/Mar/2025 05:37:44] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-03-02 05:37:45,025 - INFO - 127.0.0.1 - - [02/Mar/2025 05:37:45] "GET /socket.io/?EIO=4&transport=polling&t=PLKBYH_ HTTP/1.1" 200 -
+2025-03-02 05:37:45,425 - INFO - 127.0.0.1 - - [02/Mar/2025 05:37:45] "POST /socket.io/?EIO=4&transport=polling&t=PLKBYIF&sid=3JPgnyZLYHw2619tAAAG HTTP/1.1" 200 -
+2025-03-02 05:37:45,429 - INFO - 127.0.0.1 - - [02/Mar/2025 05:37:45] "GET /socket.io/?EIO=4&transport=polling&t=PLKBYII&sid=3JPgnyZLYHw2619tAAAG HTTP/1.1" 200 -
+2025-03-02 05:37:47,476 - INFO - 127.0.0.1 - - [02/Mar/2025 05:37:47] "GET /api/notifications?since_id=0 HTTP/1.1" 200 -
+2025-03-02 05:37:55,386 - INFO - 127.0.0.1 - - [02/Mar/2025 05:37:55] "GET /test-notification?severity=critical HTTP/1.1" 200 -
+2025-03-02 05:37:59,419 - INFO - 127.0.0.1 - - [02/Mar/2025 05:37:59] "GET /test-notification?severity=critical HTTP/1.1" 200 -
+2025-03-02 05:38:03,450 - INFO - 127.0.0.1 - - [02/Mar/2025 05:38:03] "GET /test-notification?severity=medium HTTP/1.1" 200 -
+2025-03-02 05:38:06,670 - INFO - 127.0.0.1 - - [02/Mar/2025 05:38:06] "GET /dashboard HTTP/1.1" 200 -
+2025-03-02 05:38:06,936 - INFO - 127.0.0.1 - - [02/Mar/2025 05:38:06] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-03-02 05:38:06,995 - INFO - 127.0.0.1 - - [02/Mar/2025 05:38:06] "[36mGET /static/css/notification.css HTTP/1.1[0m" 304 -
+2025-03-02 05:38:07,029 - INFO - 127.0.0.1 - - [02/Mar/2025 05:38:07] "GET /api/threats/recent?limit=10 HTTP/1.1" 200 -
+2025-03-02 05:38:07,315 - INFO - 127.0.0.1 - - [02/Mar/2025 05:38:07] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:38:07,348 - INFO - 127.0.0.1 - - [02/Mar/2025 05:38:07] "GET /api/threats/stats HTTP/1.1" 200 -
+2025-03-02 05:38:07,490 - INFO - 127.0.0.1 - - [02/Mar/2025 05:38:07] "GET /test-notification?severity=critical HTTP/1.1" 200 -
+2025-03-02 05:38:11,536 - INFO - 127.0.0.1 - - [02/Mar/2025 05:38:11] "GET /test-notification?severity=medium HTTP/1.1" 200 -
+2025-03-02 05:38:16,123 - INFO - 127.0.0.1 - - [02/Mar/2025 05:38:16] "GET /api/notifications?since_id=1740874091536 HTTP/1.1" 200 -
+2025-03-02 05:38:45,039 - INFO - 127.0.0.1 - - [02/Mar/2025 05:38:45] "GET /api/notifications?since_id=1740874100631 HTTP/1.1" 200 -
+2025-03-02 05:38:55,204 - INFO - 127.0.0.1 - - [02/Mar/2025 05:38:55] "GET /dashboard HTTP/1.1" 200 -
+2025-03-02 05:38:55,470 - INFO - 127.0.0.1 - - [02/Mar/2025 05:38:55] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-03-02 05:38:55,536 - INFO - 127.0.0.1 - - [02/Mar/2025 05:38:55] "[36mGET /static/css/notification.css HTTP/1.1[0m" 304 -
+2025-03-02 05:38:55,562 - INFO - 127.0.0.1 - - [02/Mar/2025 05:38:55] "GET /api/threats/recent?limit=10 HTTP/1.1" 200 -
+2025-03-02 05:38:55,871 - INFO - 127.0.0.1 - - [02/Mar/2025 05:38:55] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:38:55,871 - INFO - 127.0.0.1 - - [02/Mar/2025 05:38:55] "GET /api/threats/stats HTTP/1.1" 200 -
+2025-03-02 05:38:58,684 - INFO - 127.0.0.1 - - [02/Mar/2025 05:38:58] "GET /dashboard HTTP/1.1" 200 -
+2025-03-02 05:38:58,939 - INFO - 127.0.0.1 - - [02/Mar/2025 05:38:58] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-03-02 05:38:59,013 - INFO - 127.0.0.1 - - [02/Mar/2025 05:38:59] "[36mGET /static/css/notification.css HTTP/1.1[0m" 304 -
+2025-03-02 05:38:59,033 - INFO - 127.0.0.1 - - [02/Mar/2025 05:38:59] "GET /api/threats/recent?limit=10 HTTP/1.1" 200 -
+2025-03-02 05:38:59,336 - INFO - 127.0.0.1 - - [02/Mar/2025 05:38:59] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:38:59,338 - INFO - 127.0.0.1 - - [02/Mar/2025 05:38:59] "GET /api/threats/stats HTTP/1.1" 200 -
+2025-03-02 05:39:16,115 - INFO - 127.0.0.1 - - [02/Mar/2025 05:39:16] "GET /api/notifications?since_id=1740874100631 HTTP/1.1" 200 -
+2025-03-02 05:39:45,041 - INFO - 127.0.0.1 - - [02/Mar/2025 05:39:45] "GET /api/notifications?since_id=1740874160632 HTTP/1.1" 200 -
+2025-03-02 05:39:58,579 - INFO - 127.0.0.1 - - [02/Mar/2025 05:39:58] "GET /api/notifications?since_id=1740874190633 HTTP/1.1" 200 -
+2025-03-02 05:40:15,033 - INFO - 127.0.0.1 - - [02/Mar/2025 05:40:15] "GET /api/notifications?since_id=1740874190633 HTTP/1.1" 200 -
+2025-03-02 05:40:27,768 - INFO - 127.0.0.1 - - [02/Mar/2025 05:40:27] "GET /dashboard HTTP/1.1" 200 -
+2025-03-02 05:40:28,021 - INFO - 127.0.0.1 - - [02/Mar/2025 05:40:28] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-03-02 05:40:28,104 - INFO - 127.0.0.1 - - [02/Mar/2025 05:40:28] "[36mGET /static/css/notification.css HTTP/1.1[0m" 304 -
+2025-03-02 05:40:28,138 - INFO - 127.0.0.1 - - [02/Mar/2025 05:40:28] "GET /api/threats/recent?limit=10 HTTP/1.1" 200 -
+2025-03-02 05:40:28,415 - INFO - 127.0.0.1 - - [02/Mar/2025 05:40:28] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 05:40:28,452 - INFO - 127.0.0.1 - - [02/Mar/2025 05:40:28] "GET /api/threats/stats HTTP/1.1" 200 -
+2025-03-02 05:40:36,701 - INFO - 127.0.0.1 - - [02/Mar/2025 05:40:36] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-03-02 05:40:36,704 - INFO - 127.0.0.1 - - [02/Mar/2025 05:40:36] "[36mGET /static/css/notification.css HTTP/1.1[0m" 304 -
+2025-03-02 05:40:45,818 - INFO - 127.0.0.1 - - [02/Mar/2025 05:40:45] "GET /api/notifications?since_id=1740874220634 HTTP/1.1" 200 -
+2025-03-02 05:41:16,137 - INFO - 127.0.0.1 - - [02/Mar/2025 05:41:16] "GET /api/notifications?since_id=1740874250636 HTTP/1.1" 200 -
+2025-03-02 05:42:22,131 - INFO - 127.0.0.1 - - [02/Mar/2025 05:42:22] "GET /api/notifications?since_id=1740874340639 HTTP/1.1" 200 -
+2025-03-02 05:43:21,810 - INFO - 127.0.0.1 - - [02/Mar/2025 05:43:21] "GET /api/notifications?since_id=1740874400655 HTTP/1.1" 200 -
+2025-03-02 05:44:22,130 - INFO - 127.0.0.1 - - [02/Mar/2025 05:44:22] "GET /api/notifications?since_id=1740874430657 HTTP/1.1" 200 -
+2025-03-02 05:45:21,825 - INFO - 127.0.0.1 - - [02/Mar/2025 05:45:21] "GET /api/notifications?since_id=1740874520659 HTTP/1.1" 200 -
+2025-03-02 05:46:22,129 - INFO - 127.0.0.1 - - [02/Mar/2025 05:46:22] "GET /api/notifications?since_id=1740874520659 HTTP/1.1" 200 -
+2025-03-02 05:47:21,809 - INFO - 127.0.0.1 - - [02/Mar/2025 05:47:21] "GET /api/notifications?since_id=1740874640663 HTTP/1.1" 200 -
+2025-03-02 05:48:17,581 - INFO -  * Detected change in 'c:\\Users\\rahul\\OneDrive\\Documents\\GitHub\\ThreatX_Hackify\\ThreatX_web\\src\\test_notifications.py', reloading
+2025-03-02 05:48:17,582 - INFO -  * Detected change in 'c:\\Users\\rahul\\OneDrive\\Documents\\GitHub\\ThreatX_Hackify\\ThreatX_web\\src\\test_notifications.py', reloading
+2025-03-02 05:48:21,007 - INFO -  * Restarting with watchdog (windowsapi)
+2025-03-02 05:48:28,911 - WARNING -  * Debugger is active!
+2025-03-02 05:48:28,911 - INFO -  * Debugger PIN: 976-789-947
+2025-03-02 05:48:28,936 - INFO - 127.0.0.1 - - [02/Mar/2025 05:48:28] "GET /api/notifications?since_id=1740874670663 HTTP/1.1" 200 -
+2025-03-02 05:48:28,940 - INFO - 127.0.0.1 - - [02/Mar/2025 05:48:28] "GET /socket.io/?EIO=4&transport=polling&t=PLKDzlk HTTP/1.1" 200 -
+2025-03-02 05:48:28,949 - INFO - 127.0.0.1 - - [02/Mar/2025 05:48:28] "POST /socket.io/?EIO=4&transport=polling&t=PLKD_VI&sid=YVR9HGGfKMO4Re2uAAAA HTTP/1.1" 200 -
+2025-03-02 05:48:29,267 - INFO - 127.0.0.1 - - [02/Mar/2025 05:48:29] "GET /socket.io/?EIO=4&transport=polling&t=PLKD_VL&sid=YVR9HGGfKMO4Re2uAAAA HTTP/1.1" 200 -
+2025-03-02 05:48:34,237 - INFO -  * Detected change in 'c:\\Users\\rahul\\OneDrive\\Documents\\GitHub\\ThreatX_Hackify\\ThreatX_web\\src\\test_notifications.py', reloading
+2025-03-02 05:48:34,237 - INFO -  * Detected change in 'c:\\Users\\rahul\\OneDrive\\Documents\\GitHub\\ThreatX_Hackify\\ThreatX_web\\src\\test_notifications.py', reloading
+2025-03-02 05:48:37,302 - INFO -  * Restarting with watchdog (windowsapi)
+2025-03-02 05:48:55,022 - WARNING -  * Debugger is active!
+2025-03-02 05:48:55,028 - INFO -  * Debugger PIN: 976-789-947
+2025-03-02 05:48:55,049 - INFO - 127.0.0.1 - - [02/Mar/2025 05:48:55] "GET /socket.io/?EIO=4&transport=polling&t=PLKE1vP HTTP/1.1" 200 -
+2025-03-02 05:48:55,062 - INFO - 127.0.0.1 - - [02/Mar/2025 05:48:55] "POST /socket.io/?EIO=4&transport=polling&t=PLKE5tH&sid=tzTmQR2rv_RsM7szAAAA HTTP/1.1" 200 -
+2025-03-02 05:48:55,371 - INFO - 127.0.0.1 - - [02/Mar/2025 05:48:55] "GET /socket.io/?EIO=4&transport=polling&t=PLKE5tI&sid=tzTmQR2rv_RsM7szAAAA HTTP/1.1" 200 -
+2025-03-02 05:49:22,115 - INFO - 127.0.0.1 - - [02/Mar/2025 05:49:22] "GET /api/notifications?since_id=1740874670663 HTTP/1.1" 200 -
+2025-03-02 05:50:21,809 - INFO - 127.0.0.1 - - [02/Mar/2025 05:50:21] "GET /api/notifications?since_id=1740874795012 HTTP/1.1" 200 -
+2025-03-02 05:51:22,129 - INFO - 127.0.0.1 - - [02/Mar/2025 05:51:22] "GET /api/notifications?since_id=1740874825012 HTTP/1.1" 200 -
+2025-03-02 05:51:29,944 - INFO -  * Detected change in 'c:\\Users\\rahul\\OneDrive\\Documents\\GitHub\\ThreatX_Hackify\\ThreatX_web\\src\\test_threat_types.py', reloading
+2025-03-02 05:51:32,710 - INFO -  * Restarting with watchdog (windowsapi)
+2025-03-02 05:51:43,385 - WARNING -  * Debugger is active!
+2025-03-02 05:51:43,387 - INFO -  * Debugger PIN: 976-789-947
+2025-03-02 05:51:43,412 - INFO - 127.0.0.1 - - [02/Mar/2025 05:51:43] "GET /socket.io/?EIO=4&transport=polling&t=PLKEidm HTTP/1.1" 200 -
+2025-03-02 05:51:43,758 - INFO - 127.0.0.1 - - [02/Mar/2025 05:51:43] "POST /socket.io/?EIO=4&transport=polling&t=PLKEk-7&sid=C0wBkybXznBd5BtYAAAA HTTP/1.1" 200 -
+2025-03-02 05:51:43,759 - INFO - 127.0.0.1 - - [02/Mar/2025 05:51:43] "GET /socket.io/?EIO=4&transport=polling&t=PLKEk-8&sid=C0wBkybXznBd5BtYAAAA HTTP/1.1" 200 -
+2025-03-02 05:51:44,006 - INFO - 127.0.0.1 - - [02/Mar/2025 05:51:44] "GET /socket.io/?EIO=4&transport=polling&t=PLKEl3M&sid=C0wBkybXznBd5BtYAAAA HTTP/1.1" 200 -
+2025-03-02 05:52:07,166 - INFO -  * Detected change in 'c:\\Users\\rahul\\OneDrive\\Documents\\GitHub\\ThreatX_Hackify\\ThreatX_web\\src\\app.py', reloading
+2025-03-02 05:52:07,168 - INFO -  * Detected change in 'c:\\Users\\rahul\\OneDrive\\Documents\\GitHub\\ThreatX_Hackify\\ThreatX_web\\src\\app.py', reloading
+2025-03-02 05:52:07,168 - INFO -  * Detected change in 'c:\\Users\\rahul\\OneDrive\\Documents\\GitHub\\ThreatX_Hackify\\ThreatX_web\\src\\app.py', reloading
+2025-03-02 05:52:07,177 - INFO -  * Detected change in 'c:\\Users\\rahul\\OneDrive\\Documents\\GitHub\\ThreatX_Hackify\\ThreatX_web\\src\\test_threat_types.py', reloading
+2025-03-02 05:52:07,177 - INFO -  * Detected change in 'c:\\Users\\rahul\\OneDrive\\Documents\\GitHub\\ThreatX_Hackify\\ThreatX_web\\src\\test_threat_types.py', reloading
+2025-03-02 05:52:07,177 - INFO -  * Detected change in 'c:\\Users\\rahul\\OneDrive\\Documents\\GitHub\\ThreatX_Hackify\\ThreatX_web\\src\\test_threat_types.py', reloading
+2025-03-02 05:52:10,224 - INFO -  * Restarting with watchdog (windowsapi)
+2025-03-02 05:52:17,891 - WARNING -  * Debugger is active!
+2025-03-02 05:52:17,901 - INFO -  * Debugger PIN: 976-789-947
+2025-03-02 05:52:17,924 - INFO - 127.0.0.1 - - [02/Mar/2025 05:52:17] "GET /socket.io/?EIO=4&transport=polling&t=PLKErvX HTTP/1.1" 200 -
+2025-03-02 05:52:17,936 - INFO - 127.0.0.1 - - [02/Mar/2025 05:52:17] "POST /socket.io/?EIO=4&transport=polling&t=PLKEtPE&sid=cUxljDyMxapgXQcEAAAA HTTP/1.1" 200 -
+2025-03-02 05:52:18,256 - INFO - 127.0.0.1 - - [02/Mar/2025 05:52:18] "GET /socket.io/?EIO=4&transport=polling&t=PLKEtPI&sid=cUxljDyMxapgXQcEAAAA HTTP/1.1" 200 -
+2025-03-02 05:52:22,141 - INFO - 127.0.0.1 - - [02/Mar/2025 05:52:22] "GET /api/notifications?since_id=1740874885014 HTTP/1.1" 200 -
+2025-03-02 05:52:40,327 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-02 05:52:40,327 - INFO - [33mPress CTRL+C to quit[0m
+2025-03-02 05:52:40,327 - INFO -  * Restarting with watchdog (windowsapi)
+2025-03-02 05:52:45,720 - WARNING -  * Debugger is active!
+2025-03-02 05:52:45,724 - INFO -  * Debugger PIN: 976-789-947
+2025-03-02 05:53:09,787 - INFO - 127.0.0.1 - - [02/Mar/2025 05:53:09] "GET / HTTP/1.1" 200 -
+2025-03-02 05:53:10,109 - INFO - 127.0.0.1 - - [02/Mar/2025 05:53:10] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-03-02 05:53:13,725 - INFO - 127.0.0.1 - - [02/Mar/2025 05:53:13] "GET /chatbot HTTP/1.1" 200 -
+2025-03-02 05:53:13,773 - INFO - 127.0.0.1 - - [02/Mar/2025 05:53:13] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-03-02 05:53:13,774 - INFO - 127.0.0.1 - - [02/Mar/2025 05:53:13] "[36mGET /static/css/notification.css HTTP/1.1[0m" 304 -
+2025-03-02 05:53:13,774 - INFO - 127.0.0.1 - - [02/Mar/2025 05:53:13] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-03-02 05:53:13,861 - INFO - 127.0.0.1 - - [02/Mar/2025 05:53:13] "GET /socket.io/?EIO=4&transport=polling&t=PLKF52g HTTP/1.1" 200 -
+2025-03-02 05:53:13,880 - INFO - 127.0.0.1 - - [02/Mar/2025 05:53:13] "POST /socket.io/?EIO=4&transport=polling&t=PLKF53D&sid=Yl4dqhBrzsy-15udAAAA HTTP/1.1" 200 -
+2025-03-02 05:53:13,885 - INFO - 127.0.0.1 - - [02/Mar/2025 05:53:13] "GET /socket.io/?EIO=4&transport=polling&t=PLKF53G&sid=Yl4dqhBrzsy-15udAAAA HTTP/1.1" 200 -
+2025-03-02 05:53:16,957 - INFO - 127.0.0.1 - - [02/Mar/2025 05:53:16] "GET /api/notifications?since_id=1740874995711 HTTP/1.1" 200 -
+2025-03-02 05:53:21,199 - INFO - 127.0.0.1 - - [02/Mar/2025 05:53:21] "GET /socket.io/?EIO=4&transport=websocket&sid=Yl4dqhBrzsy-15udAAAA HTTP/1.1" 200 -
+2025-03-02 05:53:21,335 - INFO - 127.0.0.1 - - [02/Mar/2025 05:53:21] "GET /dashboard HTTP/1.1" 200 -
+2025-03-02 05:53:21,392 - INFO - 127.0.0.1 - - [02/Mar/2025 05:53:21] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-03-02 05:53:21,400 - INFO - 127.0.0.1 - - [02/Mar/2025 05:53:21] "[36mGET /static/css/notification.css HTTP/1.1[0m" 304 -
+2025-03-02 05:59:26,115 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-02 05:59:26,115 - INFO - [33mPress CTRL+C to quit[0m
+2025-03-02 05:59:26,115 - INFO -  * Restarting with watchdog (windowsapi)
+2025-03-02 05:59:31,574 - WARNING -  * Debugger is active!
+2025-03-02 05:59:31,585 - INFO -  * Debugger PIN: 976-789-947
+2025-03-02 05:59:33,815 - INFO - 127.0.0.1 - - [02/Mar/2025 05:59:33] "GET / HTTP/1.1" 200 -
+2025-03-02 05:59:35,327 - INFO - 127.0.0.1 - - [02/Mar/2025 05:59:35] "GET /chatbot HTTP/1.1" 200 -
+2025-03-02 05:59:35,359 - INFO - 127.0.0.1 - - [02/Mar/2025 05:59:35] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-03-02 05:59:35,359 - INFO - 127.0.0.1 - - [02/Mar/2025 05:59:35] "[36mGET /static/css/notification.css HTTP/1.1[0m" 304 -
+2025-03-02 05:59:35,365 - INFO - 127.0.0.1 - - [02/Mar/2025 05:59:35] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-03-02 05:59:35,518 - INFO - 127.0.0.1 - - [02/Mar/2025 05:59:35] "GET /socket.io/?EIO=4&transport=polling&t=PLKGYEM HTTP/1.1" 200 -
+2025-03-02 05:59:35,533 - INFO - 127.0.0.1 - - [02/Mar/2025 05:59:35] "POST /socket.io/?EIO=4&transport=polling&t=PLKGYEd&sid=q37Fh8hTXL00Xa_nAAAA HTTP/1.1" 200 -
+2025-03-02 05:59:35,542 - INFO - 127.0.0.1 - - [02/Mar/2025 05:59:35] "GET /socket.io/?EIO=4&transport=polling&t=PLKGYEg&sid=q37Fh8hTXL00Xa_nAAAA HTTP/1.1" 200 -
+2025-03-02 05:59:35,574 - INFO - 127.0.0.1 - - [02/Mar/2025 05:59:35] "GET /socket.io/?EIO=4&transport=polling&t=PLKGYFE&sid=q37Fh8hTXL00Xa_nAAAA HTTP/1.1" 200 -
+2025-03-02 05:59:38,060 - INFO - 127.0.0.1 - - [02/Mar/2025 05:59:38] "GET /socket.io/?EIO=4&transport=websocket&sid=q37Fh8hTXL00Xa_nAAAA HTTP/1.1" 200 -
+2025-03-02 05:59:38,171 - INFO - 127.0.0.1 - - [02/Mar/2025 05:59:38] "GET /dashboard HTTP/1.1" 200 -
+2025-03-02 05:59:38,231 - INFO - 127.0.0.1 - - [02/Mar/2025 05:59:38] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-03-02 05:59:38,231 - INFO - 127.0.0.1 - - [02/Mar/2025 05:59:38] "[36mGET /static/css/notification.css HTTP/1.1[0m" 304 -
+2025-03-02 05:59:40,617 - INFO - 127.0.0.1 - - [02/Mar/2025 05:59:40] "GET /dashboard HTTP/1.1" 200 -
+2025-03-02 05:59:40,643 - INFO - 127.0.0.1 - - [02/Mar/2025 05:59:40] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-03-02 05:59:40,643 - INFO - 127.0.0.1 - - [02/Mar/2025 05:59:40] "[36mGET /static/css/notification.css HTTP/1.1[0m" 304 -
+2025-03-02 05:59:49,703 - INFO -  * Detected change in 'c:\\Users\\rahul\\OneDrive\\Documents\\GitHub\\ThreatX_Hackify\\ThreatX_web\\src\\app.py', reloading
+2025-03-02 05:59:49,703 - INFO -  * Detected change in 'c:\\Users\\rahul\\OneDrive\\Documents\\GitHub\\ThreatX_Hackify\\ThreatX_web\\src\\app.py', reloading
+2025-03-02 05:59:49,720 - INFO -  * Detected change in 'c:\\Users\\rahul\\OneDrive\\Documents\\GitHub\\ThreatX_Hackify\\ThreatX_web\\src\\test_threat_types.py', reloading
+2025-03-02 05:59:49,720 - INFO -  * Detected change in 'c:\\Users\\rahul\\OneDrive\\Documents\\GitHub\\ThreatX_Hackify\\ThreatX_web\\src\\test_threat_types.py', reloading
+2025-03-02 05:59:52,496 - INFO -  * Restarting with watchdog (windowsapi)
+2025-03-02 06:00:02,126 - WARNING -  * Debugger is active!
+2025-03-02 06:00:02,138 - INFO -  * Debugger PIN: 976-789-947
+2025-03-02 06:00:02,256 - INFO - 127.0.0.1 - - [02/Mar/2025 06:00:02] "GET /dashboard HTTP/1.1" 200 -
+2025-03-02 06:00:02,282 - INFO - 127.0.0.1 - - [02/Mar/2025 06:00:02] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-03-02 06:00:02,285 - INFO - 127.0.0.1 - - [02/Mar/2025 06:00:02] "[36mGET /static/css/notification.css HTTP/1.1[0m" 304 -
+2025-03-02 06:00:02,310 - INFO - 127.0.0.1 - - [02/Mar/2025 06:00:02] "[33mGET /ws/notifications HTTP/1.1[0m" 404 -
+2025-03-02 06:00:02,351 - INFO - 127.0.0.1 - - [02/Mar/2025 06:00:02] "GET /api/threats/recent?limit=10 HTTP/1.1" 200 -
+2025-03-02 06:00:02,369 - INFO - 127.0.0.1 - - [02/Mar/2025 06:00:02] "GET /api/threats/stats HTTP/1.1" 200 -
+2025-03-02 06:00:17,375 - INFO - 127.0.0.1 - - [02/Mar/2025 06:00:17] "GET /chatbot HTTP/1.1" 200 -
+2025-03-02 06:00:17,407 - INFO - 127.0.0.1 - - [02/Mar/2025 06:00:17] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-03-02 06:00:17,409 - INFO - 127.0.0.1 - - [02/Mar/2025 06:00:17] "[36mGET /static/css/notification.css HTTP/1.1[0m" 304 -
+2025-03-02 06:00:17,474 - INFO - 127.0.0.1 - - [02/Mar/2025 06:00:17] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-03-02 06:00:17,614 - INFO - 127.0.0.1 - - [02/Mar/2025 06:00:17] "GET /socket.io/?EIO=4&transport=polling&t=PLKGiW9 HTTP/1.1" 200 -
+2025-03-02 06:00:17,635 - INFO - 127.0.0.1 - - [02/Mar/2025 06:00:17] "POST /socket.io/?EIO=4&transport=polling&t=PLKGiWS&sid=qhNXWoglzRxlovDvAAAA HTTP/1.1" 200 -
+2025-03-02 06:00:17,635 - INFO - 127.0.0.1 - - [02/Mar/2025 06:00:17] "GET /socket.io/?EIO=4&transport=polling&t=PLKGiWW&sid=qhNXWoglzRxlovDvAAAA HTTP/1.1" 200 -
+2025-03-02 06:00:17,654 - INFO - 127.0.0.1 - - [02/Mar/2025 06:00:17] "GET /socket.io/?EIO=4&transport=polling&t=PLKGiWl&sid=qhNXWoglzRxlovDvAAAA HTTP/1.1" 200 -
+2025-03-02 06:00:47,620 - INFO - 127.0.0.1 - - [02/Mar/2025 06:00:47] "GET /api/notifications?since_id=1740875432118 HTTP/1.1" 200 -
+2025-03-02 06:01:04,159 - INFO - 127.0.0.1 - - [02/Mar/2025 06:01:04] "GET /api/notifications?since_id=1740875462119 HTTP/1.1" 200 -
+2025-03-02 06:01:17,632 - INFO - 127.0.0.1 - - [02/Mar/2025 06:01:17] "GET /api/notifications?since_id=1740875462119 HTTP/1.1" 200 -

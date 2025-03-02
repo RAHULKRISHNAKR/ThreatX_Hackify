@@ -1,0 +1,90 @@
+
+# Add these routes to the existing app.py file
+
+@app.route('/dashboard')
+def dashboard():
+    """Render the security dashboard"""
+    return render_template('dashboard.html')
+
+@socketio.on('connect')
+def handle_connect():
+    """Handle WebSocket connection"""
+    connected_clients.add(request.sid)
+    print(f"Client connected: {request.sid}, Total: {len(connected_clients)}")
+
+@socketio.on('disconnect')
+def handle_disconnect():
+    """Handle WebSocket disconnection"""
+    if request.sid in connected_clients:
+        connected_clients.remove(request.sid)
+        print(f"Client disconnected: {request.sid}, Total: {len(connected_clients)}")
+
+@socketio.on('subscribe')
+def handle_subscribe(data):
+    """Handle channel subscription"""
+    channel = data.get('channel')
+    if channel:
+        join_room(channel)
+        print(f"Client {request.sid} subscribed to {channel}")
+
+@app.route('/api/threats/recent')
+def get_recent_threats():
+    """Get recent threats for dashboard"""
+    limit = int(request.args.get('limit', 10))
+    
+    # Get recent detection events
+    detections = threat_detector.get_recent_detections(limit=limit)
+    
+    # Format for the table
+    threats = []
+    for detection in detections:
+        if detection.get("threats_detected", False):
+            threat_id = detection.get("id", str(uuid.uuid4()))
+            threats.append({
+                "id": threat_id,
+                "timestamp": detection.get("timestamp", datetime.now().isoformat()),
+                "categories": detection.get("categories", {}),
+                "severity": detection.get("severity", "medium"),
+                "source_info": detection.get("source_info", {}),
+                "status": "Active"
+            })
+    
+    return jsonify({"threats": threats})
+
+@app.route('/api/threats/<threat_id>/block', methods=['POST'])
+def block_threat_source(threat_id):
+    """Block a threat source"""
+    # In a real implementation, this would add the IP/source to a blocklist
+    # For demo purposes, we just return success
+    return jsonify({"success": True, "message": f"Source for threat {threat_id} has been blocked"})
+
+# Extend the existing stats endpoint with more detailed data
+@app.route('/api/threats/stats')
+def get_threat_stats():
+    """Get threat statistics for dashboard with optional timeframe filter"""
+    timeframe = request.args.get('timeframe', 'weekly')
+    
+    # Get base stats
+    stats = threat_detector.calculate_threat_statistics()
+    
+    # Add mock trend data if not present
+    if 'recent_trend' not in stats or not stats['recent_trend']:
+        if timeframe == 'weekly':
+            dates = [(datetime.now() - timedelta(days=i)).strftime('%Y-%m-%d') for i in range(7, 0, -1)]
+        elif timeframe == 'monthly':
+            dates = [(datetime.now() - timedelta(days=i)).strftime('%Y-%m-%d') for i in range(30, 0, -3)]
+        else:  # yearly
+            dates = [(datetime.now() - timedelta(days=i*30)).strftime('%Y-%m') for i in range(12, 0, -1)]
+        
+        import random
+        stats['recent_trend'] = [
+            {
+                "date": date,
+                "count": random.randint(1, 20),
+                "spam_calls": random.randint(1, 10),
+                "spam_messages": random.randint(5, 15),
+                "malicious_content": random.randint(1, 8)
+            } for date in dates
+        ]
+    
+    return jsonify(stats)

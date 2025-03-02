@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThreatX Security Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/notification.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary-dark: #090b14;
+            --primary-medium: #1a1f35;
+            --primary-light: #2a3453;
+            --accent-blue: #0078ff;
+            --accent-cyan: #00c6ff;
+            --text-light: #f0f4ff;
+            --text-dim: #a0a8c0;
+            --danger: #ff3860;
+            --success: #23d160;
+            --warning: #ffdd57;
+            --info: #209cee;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            margin: 0;
+            padding: 0;
+        }
+
+        .dashboard-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: var(--primary-medium);
+            padding: 20px 0;
+            border-right: 1px solid var(--primary-light);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            padding: 0 20px 20px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--primary-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar-header h2 {
+            margin: 0;
+            font-weight: 600;
+            font-size: 20px;
+            color: var(--accent-cyan);
+        }
+
+        .nav-menu {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-item {
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-dim);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background-color: rgba(0, 118, 255, 0.1);
+            color: var(--text-light);
+            border-left: 3px solid var(--accent-blue);
+        }
+
+        .nav-item i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .admin-profile {
+            padding: 15px 20px;
+            border-top: 1px solid var(--primary-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .admin-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--accent-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+        }
+
+        .admin-info {
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .admin-name {
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .admin-role {
+            font-size: 12px;
+            color: var(--text-dim);
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        .page-header {
+            margin-bottom: 30px;
+        }
+
+        .page-header h1 {
+            margin: 0 0 10px;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .page-header p {
+            color: var(--text-dim);
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background-color: var(--primary-medium);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .stat-title {
+            color: var(--text-dim);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .stat-icon {
+            width: 36px;
+            height: 36px;
+            background-color: var(--primary-light);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .stat-change {
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .stat-change.positive {
+            color: var(--success);
+        }
+
+        .stat-change.negative {
+            color: var(--danger);
+        }
+
+        .chart-container {
+            background-color: var(--primary-medium);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .chart-header {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chart-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .chart-options {
+            display: flex;
+            gap: 10px;
+        }
+
+        .chart-option {
+            background: var(--primary-light);
+            border: none;
+            color: var(--text-dim);
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .chart-option:hover, .chart-option.active {
+            background-color: var(--accent-blue);
+            color: white;
+        }
+
+        .chart-body {
+            height: 300px;
+        }
+
+        .threat-table {
+            background-color: var(--primary-medium);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .threat-table-header {
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .threat-table-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .threat-table-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .threat-table-action {
+            background: none;
+            border: none;
+            color: var(--text-dim);
+            cursor: pointer;
+            padding: 5px;
+            font-size: 16px;
+            transition: color 0.2s ease;
+        }
+
+        .threat-table-action:hover {
+            color: var(--text-light);
+        }
+
+        .threats-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .threats-table th,
+        .threats-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--primary-light);
+        }
+
+        .threats-table th {
+            color: var(--text-dim);
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .threats-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .threat-severity {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .threat-severity.critical {
+            background-color: rgba(231, 76, 60, 0.2);
+            color: #e74c3c;
+        }
+
+        .threat-severity.high {
+            background-color: rgba(230, 126, 34, 0.2);
+            color: #e67e22;
+        }
+
+        .threat-severity.medium {
+            background-color: rgba(241, 196, 15, 0.2);
+            color: #f1c40f;
+        }
+
+        .threat-severity.low {
+            background-color: rgba(52, 152, 219, 0.2);
+            color: #3498db;
+        }
+
+        .threat-action-btn {
+            background: none;
+            border: none;
+            color: var(--accent-blue);
+            cursor: pointer;
+            font-size: 14px;
+            padding: 0;
+            margin-right: 10px;
+            transition: color 0.2s ease;
+        }
+
+        .threat-action-btn:hover {
+            color: var(--accent-cyan);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .dashboard-container {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid var(--primary-light);
+                padding: 10px 0;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-shield-alt fa-lg"></i>
+                <h2>ThreatX</h2>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-bell"></i>
+                    <span>Notifications</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>Spam Detection</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>Call Protection</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-shield-virus"></i>
+                    <span>Malicious Content</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Analytics</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+                <a href="/chatbot" class="nav-item">
+                    <i class="fas fa-robot"></i>
+                    <span>AI Chatbot</span>
+                </a>
+            </nav>
+            <div class="admin-profile">
+                <div class="admin-avatar">A</div>
+                <div class="admin-info">
+                    <div class="admin-name">Admin User</div>
+                    <div class="admin-role">Security Admin</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <div class="page-header">
+                <h1>Security Dashboard</h1>
+                <p>Monitor and manage detected threats and security events</p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-title">TOTAL THREATS</div>
+                        <div class="stat-icon"><i class="fas fa-shield-alt"></i></div>
+                    </div>
+                    <div class="stat-value">248</div>
+                    <div class="stat-change positive">
+                        <i class="fas fa-arrow-up"></i> 12% from last week
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-title">SPAM CALLS</div>
+                        <div class="stat-icon"><i class="fas fa-phone-alt"></i></div>
+                    </div>
+                    <div class="stat-value">86</div>
+                    <div class="stat-change negative">
+                        <i class="fas fa-arrow-down"></i> 5% from last week
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-title">SPAM MESSAGES</div>
+                        <div class="stat-icon"><i class="fas fa-envelope"></i></div>
+                    </div>
+                    <div class="stat-value">113</div>
+                    <div class="stat-change positive">
+                        <i class="fas fa-arrow-up"></i> 8% from last week
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-title">MALICIOUS CONTENT</div>
+                        <div class="stat-icon"><i class="fas fa-virus"></i></div>
+                    </div>
+                    <div class="stat-value">49</div>
+                    <div class="stat-change positive">
+                        <i class="fas fa-arrow-up"></i> 23% from last week
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h3 class="chart-title">Threat Detection Trends</h3>
+                    <div class="chart-options">
+                        <button class="chart-option active">Weekly</button>
+                        <button class="chart-option">Monthly</button>
+                        <button class="chart-option">Yearly</button>
+                    </div>
+                </div>
+                <div class="chart-body">
+                    <canvas id="threatChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="threat-table">
+                <div class="threat-table-header">
+                    <h3 class="threat-table-title">Recent Threats</h3>
+                    <div class="threat-table-actions">
+                        <button class="threat-table-action" title="Refresh"><i class="fas fa-sync-alt"></i></button>
+                        <button class="threat-table-action" title="Filter"><i class="fas fa-filter"></i></button>
+                        <button class="threat-table-action" title="Export"><i class="fas fa-download"></i></button>
+                    </div>
+                </div>
+                <table class="threats-table">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Source</th>
+                            <th>Detected</th>
+                            <th>Severity</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="threatTableBody">
+                        <!-- Table rows will be populated dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize WebSocket connection
+            const socket = new WebSocket(`${window.location.protocol === 'https:' ? 'wss:' : 'ws:'}//${window.location.host}/ws/notifications`);
+            
+            // Handle WebSocket events
+            socket.onopen = function(e) {
+                console.log("Dashboard WebSocket connection established");
+            };
+            
+            socket.onmessage = function(event) {
+                try {
+                    const data = JSON.parse(event.data);
+                    
+                    if (data.type === 'notification') {
+                        // Add notification to the table
+                        addThreatToTable(data.notification);
+                        
+                        // Update stats
+                        updateStats();
+                    }
+                } catch (e) {
+                    console.error("Error processing WebSocket message:", e);
+                }
+            };
+            
+            socket.onclose = function(event) {
+                console.log("WebSocket connection closed, attempting to reconnect in 5s");
+                setTimeout(initWebSocket, 5000);
+            };
+            
+            // Initialize charts
+            initializeCharts();
+            
+            // Load initial data
+            fetchThreats();
+            fetchStats();
+            
+            // Add event listeners
+            document.querySelector('.chart-options').addEventListener('click', function(e) {
+                if (e.target.classList.contains('chart-option')) {
+                    // Remove active class from all options
+                    document.querySelectorAll('.chart-option').forEach(opt => {
+                        opt.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked option
+                    e.target.classList.add('active');
+                    
+                    // Update chart data based on selected timeframe
+                    updateChartData(e.target.textContent.trim().toLowerCase());
+                }
+            });
+            
+            // Add refresh button event listener
+            document.querySelector('.threat-table-action[title="Refresh"]').addEventListener('click', function() {
+                fetchThreats();
+            });
+        });
+        
+        // Function to initialize charts
+        function initializeCharts() {
+            const ctx = document.getElementById('threatChart').getContext('2d');
+            
+            window.threatChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [
+                        {
+                            label: 'Spam Calls',
+                            data: [5, 12, 8, 15, 10, 6, 13],
+                            borderColor: '#e74c3c',
+                            backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                            tension: 0.3,
+                            fill: true
+                        },
+                        {
+                            label: 'Spam Messages',
+                            data: [10, 15, 12, 20, 18, 15, 22],
+                            borderColor: '#f1c40f',
+                            backgroundColor: 'rgba(241, 196, 15, 0.1)',
+                            tension: 0.3,
+                            fill: true
+                        },
+                        {
+                            label: 'Malicious Content',
+                            data: [3, 5, 8, 13, 11, 9, 7],
+                            borderColor: '#3498db',
+                            backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                            tension: 0.3,
+                            fill: true
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                color: '#a0a8c0',
+                                font: {
+                                    family: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"
+                                }
+                            }
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.05)'
+                            },
+                            ticks: {
+                                color: '#a0a8c0'
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.05)'
+                            },
+                            ticks: {
+                                color: '#a0a8c0'
+                            }
+                        }
+                    },
+                    interaction: {
+                        mode: 'nearest',
+                        axis: 'x',
+                        intersect: false
+                    }
+                }
+            });
+        }
+        
+        // Function to update chart data based on timeframe
+        function updateChartData(timeframe) {
+            // Fetch data from API based on timeframe
+            fetch(`/api/threats/stats?timeframe=${timeframe}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Update chart with new data
+                    if (data.trend && window.threatChart) {
+                        window.threatChart.data.labels = data.trend.map(item => item.date);
+                        window.threatChart.data.datasets[0].data = data.trend.map(item => item.spam_calls || 0);
+                        window.threatChart.data.datasets[1].data = data.trend.map(item => item.spam_messages || 0);
+                        window.threatChart.data.datasets[2].data = data.trend.map(item => item.malicious_content || 0);
+                        window.threatChart.update();
+                    }
+                })
+                .catch(error => console.error('Error fetching chart data:', error));
+        }
+        
+        // Function to add threat to table
+        function addThreatToTable(threat) {
+            const tableBody = document.getElementById('threatTableBody');
+            
+            // Create new row
+            const row = document.createElement('tr');
+            
+            // Format date
+            const date = new Date(threat.timestamp);
+            const formattedDate = date.toLocaleDateString() + ' ' + date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            
+            // Set row content
+            row.innerHTML = `
+                <td>${threat.categories ? Object.keys(threat.categories)[0].replace('_', ' ') : threat.type || 'Unknown'}</td>
+                <td>${threat.source_info?.ip || threat.source_info?.phone || threat.source_info?.email || 'Unknown'}</td>
+                <td>${formattedDate}</td>
+                <td><span class="threat-severity ${threat.severity}">${threat.severity}</span></td>
+                <td>Active</td>
+                <td>
+                    <button class="threat-action-btn" onclick="viewThreatDetails('${threat.id}')">View</button>
+                    <button class="threat-action-btn" onclick="blockSource('${threat.id}')">Block</button>
+                </td>
+            `;
+            
+            // Add to table
+            tableBody.prepend(row);
+            
+            // Limit table rows
+            if (tableBody.children.length > 10) {
+                tableBody.removeChild(tableBody.lastChild);
+            }
+        }
+        
+        // Function to fetch threats
+        function fetchThreats() {
+            fetch('/api/threats/recent?limit=10')
+                .then(response => response.json())
+                .then(data => {
+                    // Clear table
+                    const tableBody = document.getElementById('threatTableBody');
+                    tableBody.innerHTML = '';
+                    
+                    // Add threats to table
+                    if (data.threats && data.threats.length) {
+                        data.threats.forEach(threat => {
+                            addThreatToTable(threat);
+                        });
+                    } else {
+                        // Show no threats message
+                        tableBody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--text-dim)">No recent threats detected</td></tr>`;
+                    }
+                })
+                .catch(error => console.error('Error fetching threats:', error));
+        }
+        
+        // Function to fetch stats
+        function fetchStats() {
+            fetch('/api/threats/stats')
+                .then(response => response.json())
+                .then(data => {
+                    // Update stat cards
+                    document.querySelector('.stats-grid .stat-card:nth-child(1) .stat-value').textContent = data.total_threats || 0;
+                    document.querySelector('.stats-grid .stat-card:nth-child(2) .stat-value').textContent = data.by_category?.spam_call || 0;
+                    document.querySelector('.stats-grid .stat-card:nth-child(3) .stat-value').textContent = data.by_category?.spam_sms || 0;
+                    document.querySelector('.stats-grid .stat-card:nth-child(4) .stat-value').textContent = data.by_category?.malicious_content || 0;
+                })
+                .catch(error => console.error('Error fetching stats:', error));
+        }
+        
+        // Function to view threat details
+        function viewThreatDetails(threatId) {
+            // Show threat details modal or navigate to threat details page
+            console.log('View threat details:', threatId);
+            
+            // This could be expanded to show a modal with detailed information
+            alert('Viewing threat details will be implemented in a future update.');
+        }
+        
+        // Function to block source
+        function blockSource(threatId) {
+            // Call API to block the threat source
+            fetch(`/api/threats/${threatId}/block`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Source has been blocked successfully');
+                    fetchThreats(); // Refresh the table
+                } else {
+                    alert('Failed to block source: ' + data.error);
+                }
+            })
+            .catch(error => console.error('Error blocking source:', error));
+        }
+    </script>
+</body>
+</html>

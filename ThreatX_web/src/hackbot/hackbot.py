@@ -35,6 +35,7 @@ request_timestamps = []
 model = None
 last_initialization_attempt = None
 INITIALIZATION_COOLDOWN = 60  # seconds
+initialization_successful = False
 
 def check_rate_limit():
     """Check if we're within rate limits"""
@@ -51,7 +52,12 @@ def check_rate_limit():
     return True
 
 def initialize_gemini():
-    global model, last_initialization_attempt
+    global model, last_initialization_attempt, initialization_successful
+    
+    # If already successful, don't reinitialize
+    if initialization_successful:
+        print("Gemini already successfully initialized, skipping...")
+        return True
     
     # Check if we're trying to initialize too frequently
     if last_initialization_attempt and \
@@ -64,7 +70,8 @@ def initialize_gemini():
     try:
         api_key = os.getenv("GEMINI_API_KEY")
         if not api_key:
-            raise ValueError("GEMINI_API_KEY not found in environment variables")
+            print("GEMINI_API_KEY not found in environment variables")
+            return False
             
         print(f"Attempting to initialize Gemini with key: {api_key[:10]}...")
         genai.configure(api_key=api_key)
@@ -75,9 +82,11 @@ def initialize_gemini():
         # Simple test without generation config
         test_response = model.generate_content("test")
         if not hasattr(test_response, 'text'):
-            raise ValueError("Model test failed - invalid response format")
+            print("Model test failed - invalid response format")
+            return False
             
         print("Gemini model initialized successfully!")
+        initialization_successful = True
         return True
         
     except Exception as e:
@@ -87,8 +96,7 @@ def initialize_gemini():
 
 # Initialize Gemini if it's selected
 if AI_OPTION == "GEMINI":
-    if not initialize_gemini():
-        print("Warning: Gemini initialization failed!")
+    initialize_gemini()
 
 # Configure OpenAI
 if AI_OPTION == "OPENAI":
