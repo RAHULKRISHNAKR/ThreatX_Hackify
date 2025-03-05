@@ -280,15 +280,42 @@ def block_threat_source(threat_id):
 @app.route('/test-notification')
 def test_notification():
     """Test endpoint to manually trigger a notification"""
+    threat_type = request.args.get('type', 'generic')
+    severity = request.args.get('severity', 'medium')
+    
+    # Create notification based on threat type
+    if threat_type == 'spam_call':
+        message = "Suspicious spam call detected"
+        details = {
+            "type": "spam_call",
+            "categories": {"spam_call": {"confidence": 0.9}},
+            "source_info": {"phone": "+1" + str(random.randint(2000000000, 9999999999))}
+        }
+    elif threat_type == 'spam_sms':
+        message = "Suspicious SMS message detected"
+        details = {
+            "type": "spam_sms",
+            "categories": {"spam_sms": {"confidence": 0.85}},
+            "source_info": {"phone": "+1" + str(random.randint(2000000000, 9999999999))}
+        }
+    elif threat_type == 'malicious_content':
+        message = "Malicious content detected"
+        details = {
+            "type": "malicious_content",
+            "categories": {"malicious_content": {"confidence": 0.95}},
+            "source_info": {"ip": f"{random.randint(1,255)}.{random.randint(1,255)}.{random.randint(1,255)}.{random.randint(1,255)}"}
+        }
+    else:
+        message = "Generic test notification"
+        details = {"test": True, "source": "manual trigger"}
+    
     notification = {
         "id": str(int(time.time() * 1000)),
         "timestamp": datetime.now().isoformat(),
-        "message": "This is a test notification",
-        "severity": request.args.get('severity', 'medium'),  # Can pass severity as query param
-        "details": {
-            "test": True,
-            "source": "manual trigger"
-        }
+        "message": message,
+        "severity": severity,
+        "type": threat_type,
+        "details": details
     }
     
     # Emit to all clients
@@ -296,7 +323,7 @@ def test_notification():
     
     return jsonify({
         'success': True,
-        'message': 'Test notification sent'
+        'message': f'Test {threat_type} notification sent'
     })
 
 @socketio.on('connect')

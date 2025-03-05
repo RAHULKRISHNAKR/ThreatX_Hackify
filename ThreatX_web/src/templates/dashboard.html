@@ -525,6 +525,14 @@
             // Initialize WebSocket connection
             const socket = new WebSocket(`${window.location.protocol === 'https:' ? 'wss:' : 'ws:'}//${window.location.host}/ws/notifications`);
             
+            // Track counter values
+            const counters = {
+                total_threats: parseInt(document.querySelector('.stats-grid .stat-card:nth-child(1) .stat-value').textContent) || 248,
+                spam_calls: parseInt(document.querySelector('.stats-grid .stat-card:nth-child(2) .stat-value').textContent) || 86,
+                spam_messages: parseInt(document.querySelector('.stats-grid .stat-card:nth-child(3) .stat-value').textContent) || 113,
+                malicious_content: parseInt(document.querySelector('.stats-grid .stat-card:nth-child(4) .stat-value').textContent) || 49
+            };
+            
             // Handle WebSocket events
             socket.onopen = function(e) {
                 console.log("Dashboard WebSocket connection established");
@@ -538,18 +546,163 @@
                         // Add notification to the table
                         addThreatToTable(data.notification);
                         
-                        // Update stats
-                        updateStats();
+                        // Update counters based on the notification type
+                        updateCountersForNotification(data.notification);
                     }
                 } catch (e) {
                     console.error("Error processing WebSocket message:", e);
                 }
             };
             
-            socket.onclose = function(event) {
-                console.log("WebSocket connection closed, attempting to reconnect in 5s");
-                setTimeout(initWebSocket, 5000);
-            };
+            // Function to update counters based on notification type
+            function updateCountersForNotification(notification) {
+                // Always increment total threats
+                counters.total_threats++;
+                updateCounter('total_threats', counters.total_threats);
+                
+                // Determine threat type and update appropriate counter
+                const details = notification.details || {};
+                const type = notification.type || details.type || '';
+                const categories = details.categories || {};
+                
+                if (type.includes('spam_call') || Object.keys(categories).some(key => key.includes('spam_call'))) {
+                    counters.spam_calls++;
+                    updateCounter('spam_calls', counters.spam_calls);
+                } 
+                else if (type.includes('spam_sms') || type.includes('spam_message') || type.includes('spam_email') || 
+                        Object.keys(categories).some(key => key.includes('spam_sms') || key.includes('spam_message') || key.includes('spam_email'))) {
+                    counters.spam_messages++;
+                    updateCounter('spam_messages', counters.spam_messages);
+                }
+                else if (type.includes('malicious') || Object.keys(categories).some(key => key.includes('malicious'))) {
+                    counters.malicious_content++;
+                    updateCounter('malicious_content', counters.malicious_content);
+                }
+            }
+            
+            // Function to update counter with animation
+            function updateCounter(type, value) {
+                let selector;
+                switch(type) {
+                    case 'total_threats':
+                        selector = '.stats-grid .stat-card:nth-child(1) .stat-value';
+                        break;
+                    case 'spam_calls':
+                        selector = '.stats-grid .stat-card:nth-child(2) .stat-value';
+                        break;
+                    case 'spam_messages':
+                        selector = '.stats-grid .stat-card:nth-child(3) .stat-value';
+                        break;
+                    case 'malicious_content':
+                        selector = '.stats-grid .stat-card:nth-child(4) .stat-value';
+                        break;
+                }
+                
+                const element = document.querySelector(selector);
+                if (element) {
+                    // Update value
+                    element.textContent = value;
+                    
+                    // Add animation class
+                    element.classList.add('counter-updated');
+                    
+                    // Remove animation class after animation completes
+                    setTimeout(() => {
+                        element.classList.remove('counter-updated');
+                    }, 1000);
+                }
+            }
+            
+            // Add CSS for the animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes counter-pulse {
+                    0% { transform: scale(1); color: var(--text-light); }
+                    50% { transform: scale(1.2); color: var(--accent-cyan); }
+                    100% { transform: scale(1); color: var(--text-light); }
+                }
+                
+                .counter-updated {
+                    animation: counter-pulse 1s ease;
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Add test buttons for manually triggering different threat types
+            const chartContainer = document.querySelector('.chart-container');
+            if (chartContainer) {
+                const testControls = document.createElement('div');
+                testControls.className = 'test-controls';
+                testControls.innerHTML = `
+                    <h4>Test Controls</h4>
+                    <div class="test-buttons">
+                        <button id="test-spam-call" class="test-button">Add Spam Call</button>
+                        <button id="test-spam-message" class="test-button">Add Spam Message</button>
+                        <button id="test-malicious" class="test-button">Add Malicious Content</button>
+                    </div>
+                `;
+                chartContainer.appendChild(testControls);
+                
+                // Add test control styles
+                const testControlsStyle = document.createElement('style');
+                testControlsStyle.textContent = `
+                    .test-controls {
+                        margin-top: 20px;
+                        padding-top: 15px;
+                        border-top: 1px solid var(--primary-light);
+                    }
+                    
+                    .test-controls h4 {
+                        color: var(--text-dim);
+                        margin-bottom: 10px;
+                        font-size: 14px;
+                    }
+                    
+                    .test-buttons {
+                        display: flex;
+                        gap: 10px;
+                        flex-wrap: wrap;
+                    }
+                    
+                    .test-button {
+                        background: var(--primary-light);
+                        border: none;
+                        color: var(--text-light);
+                        padding: 8px 12px;
+                        border-radius: 4px;
+                        cursor: pointer;
+                        font-size: 12px;
+                        transition: all 0.2s ease;
+                    }
+                    
+                    .test-button:hover {
+                        background-color: var(--accent-blue);
+                    }
+                `;
+                document.head.appendChild(testControlsStyle);
+                
+                // Add event listeners for test buttons
+                document.getElementById('test-spam-call').addEventListener('click', function() {
+                    triggerTestNotification('spam_call');
+                });
+                
+                document.getElementById('test-spam-message').addEventListener('click', function() {
+                    triggerTestNotification('spam_sms');
+                });
+                
+                document.getElementById('test-malicious').addEventListener('click', function() {
+                    triggerTestNotification('malicious_content');
+                });
+            }
+            
+            function triggerTestNotification(type) {
+                fetch(`/test-notification?type=${type}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(`Triggered test ${type} notification:`, data);
+                    })
+                    .catch(error => console.error('Error triggering test notification:', error));
+            }
             
             // Initialize charts
             initializeCharts();
